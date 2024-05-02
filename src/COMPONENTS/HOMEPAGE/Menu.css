@@ -1,0 +1,43 @@
+
+.slide1{
+    animation-name: slide1;
+    animation-duration: 0.7s;
+    animation-delay: 0.9s;
+    animation-fill-mode: forwards;
+    opacity: 0;
+    
+
+}
+
+.slide1-in{
+    animation-name: slide1-in;
+    animation-duration: 0.7s;
+    animation-delay: 0.4s;
+    animation-fill-mode: both;
+    
+    /*animation-timing-function: linear;*/
+}
+
+/*'translate-x-[-0%] transition duration-[0.7s] delay-[0.4s]':' translate-x-[110%] transition duration-[0.7s] delay-[1s]'} */
+
+@keyframes slide1{
+
+    from{
+       
+        transform: translateX(0%);
+    }
+    to{
+        transform: translateX(100%);
+    }
+}
+
+
+@keyframes slide1-in{
+
+    from{
+        transform: translateX(100%);
+    }
+    to{
+        transform: translateX(0%);
+    }
+}

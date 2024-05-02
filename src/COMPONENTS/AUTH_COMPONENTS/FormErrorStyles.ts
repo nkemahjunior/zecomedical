@@ -1,0 +1,1 @@
+export const errorStyle = " text-sm 2xl:text-lg text-red-600 pt-2 "

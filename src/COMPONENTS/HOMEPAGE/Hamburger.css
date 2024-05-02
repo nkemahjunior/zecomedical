@@ -1,0 +1,64 @@
+
+.hamburger1 {
+    animation-name: hamburger1;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction:alternate;
+    animation-timing-function: linear;
+   /* animation-fill-mode:backwards;
+    animation-delay: 0.1s;*/
+
+}
+
+.hamburger2 {
+    animation-name: hamburger2;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction:alternate;
+    animation-timing-function: ease;
+   /* animation-fill-mode:backwards;*/
+    animation-delay: 0.2s;
+
+}
+
+.hamburger3 {
+    animation-name: hamburger3;
+    animation-duration: 0.3s;
+    animation-iteration-count: infinite;
+    animation-direction:alternate;
+    animation-timing-function: linear;
+   /* animation-fill-mode:backwards;*/
+    animation-delay: 0.4s;
+
+}
+
+/*w-40px*/
+@keyframes hamburger1 {
+    from{
+        width: 40px;
+    }
+
+    to{
+        width: 36px;
+    }
+}
+
+@keyframes hamburger2 {
+    from{
+        width: 34px;
+    }
+
+    to{
+        width: 30px;
+    }
+}
+
+@keyframes hamburger3 {
+    from{
+        width: 28px;
+    }
+
+    to{
+        width: 24px;
+    }
+}
