@@ -8,3 +8,6 @@ export const navHeight_2xl = 8
 
 
 export const baseTextColor = "#24312F"
+
+export const textStylesH3 = 'text-[2.074rem] xl:text-[2.986rem] text-[#00171F]'
+export const textStylesBody = 'text-[1.44rem] lg:text-[1.94rem] text-[#00171F]'

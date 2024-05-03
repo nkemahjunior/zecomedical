@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { textStylesBody, textStylesH3 } from "../GENERAL_STYLES/general";
 
  interface parameters{
     openModal:(arg:boolean) => void
@@ -16,7 +17,7 @@ export default function UpcomingAppointments({openModal,showModalContent}:parame
     return (
         <>
                 <div>
-                    <h3 className="border-0 border-solid border-black mt-6 lg:mt-12 text-[2.074rem] xl:text-[2.986rem] text-[#00171F]">Upcoming Appoinments</h3>
+                    <h3 className={`border-0 border-solid border-black mt-6 lg:mt-12 ${textStylesH3}`}>Upcoming Appoinments</h3>
 
                     <div className=" px-[1.2rem] py-[1.6rem] sm:p-[3rem] md:px-[4rem] md:py-[6rem] lg:px-[2rem] lg:py-[6rem] xl:px-[6rem] xl:py-[7rem] mt-8 lg:mt-12 
                     grid grid-cols-2 text-white bg-[#003459]
@@ -32,16 +33,16 @@ export default function UpcomingAppointments({openModal,showModalContent}:parame
 
                         <div className=" ">
 
-                            <div className=" space-y-[0.2rem] lg:space-y-[0.7rem] xl:space-y-[1.4rem]">
-                                <p className="text-[1.44rem] lg:text-[1.94rem]">April 02, 2024</p>
-                                <p className="text-[1.44rem] lg:text-[1.94rem]">My stomach aches</p>
-                                <p className="text-[1.44rem] lg:text-[1.94rem]">Dr.Zekoinas Petrovic</p>
-                                <p className="text-[1.44rem] lg:text-[1.94rem]">Pending</p>
+                            <div className=" space-y-[0.2rem] lg:space-y-[0.7rem] xl:space-y-[1.4rem] ">
+                                <p className= { `${textStylesBody} text-white` }>April 02, 2024</p>
+                                <p className= { `${textStylesBody} text-white` }>My stomach aches</p>
+                                <p className= { `${textStylesBody} text-white` }>Dr.Zekoinas Petrovic</p>
+                                <p className= { `${textStylesBody} text-white` }>Pending</p>
                             </div>
 
                             <button 
                             onClick={ openModalContent }
-                            className=" mt-8  bg-white text-[1.44rem] lg:text-[1.94rem]  text-[#003459] rounded-lg w-full lg:w-[80%] xl:w-[70%] py-[1.2rem]">
+                            className={`mt-8  bg-white ${textStylesBody} text-[#003459] rounded-lg w-full lg:w-[80%] xl:w-[70%] py-[1.2rem]`}>
                                 View Details
                             </button>
                         </div>

@@ -8,6 +8,7 @@ import { useState } from "react";
 import UpcomingAppointmentsModalDetails from "./UpcomingAppointmentsModalDetails";
 import PreviousSessionModalDetails from "./PreviousSessionModalDetails";
 import AvailableDoctorModalDetails from "./AvailableDoctorModalDetails";
+import { textStylesBody, textStylesH3 } from "../GENERAL_STYLES/general";
 
  
  
@@ -42,7 +43,7 @@ export default function PatientHome() {
                                     
             
             {/* mt is thesame value as the height of the nav bar, don't change it boy */}
-            <div className={` mt-[4rem] sm:mt-[6rem] lg:grid lg:grid-cols-2 lg:gap-x-12 2xl:gap-x-32 border-solid border-4 border-red-600 
+            <div className={`fixedl mt-[4rem] sm:mt-[6rem] lg:grid lg:grid-cols-2 lg:gap-x-12 2xl:gap-x-32 border-solid border-4 border-red-600 
                 px-2 pb-4 sm:px-20 sm:pb-6  md:px-36 md:pb-8 lg:px-12 lg:pb-14 2xl:px-[18rem] 2xl:pb-24 
             `}>
 
@@ -62,7 +63,7 @@ export default function PatientHome() {
 
                     
 
-                    <h3 className="border-0 border-solid border-black mt-6 lg:mt-12 text-[2.074rem] xl:text-[2.986rem] text-[#00171F]">Available Doctors</h3>
+                    <h3 className={`border-0 border-solid border-black mt-6 lg:mt-12 ${textStylesH3} text-[#00171F]`}>Available Doctors</h3>
 
                     <div className="h-full lg:h-[89.2%] bg-[#003459] 
                     py-[3rem]  md:py-[4rem]  lg:py-[1.6rem]  xl:py-[2.8rem] mt-8 lg:mt-12 
@@ -80,7 +81,7 @@ export default function PatientHome() {
 
 
                         <div className="flex justify-center mt-20 sm:mt-24 lg:mt-[4rem] xl:mt-[8rem]">
-                            <button className="   bg-white text-[1.44rem] lg:text-[1.94rem]  text-[#003459] rounded-lg w-[70%] py-[1rem] lg:w-[80%] xl:w-[70%] ">
+                            <button className={`bg-white  ${textStylesBody}  text-[#003459] rounded-lg w-[70%] py-[1rem] lg:w-[80%] xl:w-[70%]`}>
                                         See All
                             </button>
                         </div>

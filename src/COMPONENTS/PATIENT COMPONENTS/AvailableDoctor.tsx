@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { textStylesBody } from "../GENERAL_STYLES/general";
 
 interface parameters{
     openModal: (arg:boolean) => void
@@ -29,16 +30,16 @@ export default function AvailableDoctor({openModal,showModalContent}:parameters)
 
 
             <div className="border-0 border-solid border-red-600 space-y-[0.2rem] lg:space-y-[0.7rem] xl:space-y-[1.4rem] ">
-                <p className=" text-[1.44rem] lg:text-[1.94rem]">April 02, 2024</p>
-                <p className=" text-[1.44rem] lg:text-[1.94rem]">Dr.Zekoinas Petrovic</p>
-                <p className=" text-[1.44rem] lg:text-[1.94rem]">Dentist</p>
+                <p className={`text-[1.44rem] lg:text-[1.94rem] ${textStylesBody} text-white`}>April 02, 2024</p>
+                <p className={`text-[1.44rem] lg:text-[1.94rem] ${textStylesBody} text-white`}>Dr.Zekoinas Petrovic</p>
+                <p className={`text-[1.44rem] lg:text-[1.94rem] ${textStylesBody} text-white`}>Dentist</p>
             </div>
 
             <div className="border-0 border-solid border-red-600 mt-[3.8rem] lg:mt-[6.2rem] xl:mt-[7.5rem]">
 
                 <button 
                 onClick={ openModalContent }
-                className=" h-fit w-fit px-8  py-2 sm:px-[10rem] md:px-[4.5rem] 2xl:px-[12rem]    bg-white text-[1.44rem] lg:text-[1.94rem]  text-[#003459] rounded-lg  ">
+                className={` h-fit w-fit px-8  py-2 sm:px-[10rem] md:px-[4.5rem] 2xl:px-[12rem]    bg-white ${textStylesBody}  text-[#003459] rounded-lg`}>
                     Book
                 </button>
 
