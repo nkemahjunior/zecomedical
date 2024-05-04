@@ -4,6 +4,8 @@ import "./globals.css";
 import ReactToast from "./ReactToast";
 import ReactQueryProvider from "./ReactQueryProvider";
 import { roboto } from "./fonts";
+import ModalProvider from "./ModalProvider";
+import Modal from "@/COMPONENTS/GLOBAL_COMPONENTS/Modal";
 
 
 
@@ -21,7 +23,13 @@ export default function RootLayout( {children,}: Readonly<{ children: React.Reac
           
           <ReactQueryProvider>
             <ReactToast/>
-            {children}
+
+            <ModalProvider>
+              <Modal/>
+              {children}
+            </ModalProvider>
+
+
           </ReactQueryProvider>
          
 

@@ -1,18 +1,22 @@
+"use client"
+
 import Image from "next/image";
 import { textStylesBody } from "../GENERAL_STYLES/general";
+import { useContext } from "react";
+import { contextTypes, ModalContext } from "@/app/ModalProvider";
+import AvailableDoctorModalDetails from "./AvailableDoctorModalDetails";
 
-interface parameters{
-    openModal: (arg:boolean) => void
-    showModalContent:(arg:boolean) => void
-}
+
  
- 
-export default function AvailableDoctor({openModal,showModalContent}:parameters) {
+export default function AvailableDoctor() {
+
+    const {setShowModal,setModalContent} = useContext(ModalContext) as contextTypes
 
 
     function openModalContent(){
-        openModal(true)
-        showModalContent(true)
+        setShowModal(true)
+        setModalContent(<AvailableDoctorModalDetails/>)
+
     }
 
     return (

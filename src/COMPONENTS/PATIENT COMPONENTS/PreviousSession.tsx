@@ -1,18 +1,19 @@
 import Image from "next/image";
 import { textStylesBody, textStylesH3 } from "../GENERAL_STYLES/general";
+import { contextTypes, ModalContext } from "@/app/ModalProvider";
+import { useContext } from "react";
+import PreviousSessionModalDetails from "./PreviousSessionModalDetails";
 
 
-interface parameters{
-    openModal:(arg:boolean) => void
-    showModalContent:(arg:boolean) => void
-}
  
  
-export default function PreviousSession({openModal,showModalContent}:parameters) {
+export default function PreviousSession() {
+
+    const {setShowModal,setModalContent} = useContext(ModalContext) as contextTypes
 
     function openModalContent(){
-        openModal(true)
-        showModalContent(true)
+        setShowModal(true)
+        setModalContent(<PreviousSessionModalDetails/>)
     }
 
     return (

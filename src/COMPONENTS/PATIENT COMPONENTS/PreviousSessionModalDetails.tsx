@@ -15,7 +15,7 @@ export default function PreviousSessionModalDetails() {
 
 
 
-                    <h3 className={`mt-6 mb-6 text-center font-semibold  ${textStylesH3}`}>Upcoming Appoinment Details</h3>
+                    <h3 className={`mt-6 mb-6 text-center font-semibold  ${textStylesH3}`}>Previous Session Details</h3>
 
                     <div className="space-y-6 sm:grid sm:grid-cols-[45fr,55fr] sm:gap-x-6 lg:gap-x-14">
 

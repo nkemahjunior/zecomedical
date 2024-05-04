@@ -1,17 +1,25 @@
 import Image from "next/image";
 import { textStylesBody, textStylesH3 } from "../GENERAL_STYLES/general";
+import { useContext } from "react";
+import { contextTypes, ModalContext } from "@/app/ModalProvider";
+import UpcomingAppointmentsModalDetails from "./UpcomingAppointmentsModalDetails";
 
  interface parameters{
     openModal:(arg:boolean) => void
     showModalContent:(arg:boolean) => void
 
  }
+
+//  {openModal,showModalContent}:parameters
  
-export default function UpcomingAppointments({openModal,showModalContent}:parameters) {
+export default function UpcomingAppointments() {
+
+    const {setShowModal,setModalContent} = useContext(ModalContext) as contextTypes
 
     function openModalContent(){
-        openModal(true)
-        showModalContent(true)
+        setShowModal(true)
+        //openModal(true)
+        setModalContent(<UpcomingAppointmentsModalDetails/>)
     }
 
     return (

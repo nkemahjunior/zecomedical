@@ -149,19 +149,19 @@ export default function PatientNavBar() {
 
                     {/**round menu, xl downwards */}
                     <div className="flex xl:hidden items-center   " onClick={ showNav}>
-                        <div className=" border-solid border-2 border-[#4d5d62] h-[2.5rem] w-[2.5rem] relative rounded-[50%] overflow-hidden ">
+                        <button className=" border-solid border-2 border-[#4d5d62] h-[2.5rem] w-[2.5rem] relative rounded-[50%] overflow-hidden ">
 
                             <Image className="block"  src={"/dp.jpeg"} alt="profile picture" fill={true} quality={100} priority={true}  style={{ maxHeight:"100%", maxWidth:"100%"}}/>                            
-                        </div>
+                        </button>
                     </div>
 
 
                     {/**round menu,xl above */}
                     <div className="hidden xl:flex  items-center   " onClick={ showNav2}>
-                        <div className=" border-solid border-2 border-[#4d5d62] h-[3rem] w-[3rem] overflow-hidden relative rounded-[50%] ">
+                        <button className=" border-solid border-2 border-[#4d5d62] h-[3rem] w-[3rem] overflow-hidden relative rounded-[50%] ">
 
                             <Image className="block"  src={"/dp.jpeg"} alt="profile picture" fill={true} quality={100} priority={true}  style={{ maxHeight:"100%", maxWidth:"100%"}}/>
-                        </div>
+                        </button>
                     </div>
 
 
