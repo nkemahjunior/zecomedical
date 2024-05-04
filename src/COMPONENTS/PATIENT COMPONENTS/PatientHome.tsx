@@ -43,7 +43,7 @@ export default function PatientHome() {
                                     
             
             {/* mt is thesame value as the height of the nav bar, don't change it boy */}
-            <div className={`fixedl mt-[4rem] sm:mt-[6rem] lg:grid lg:grid-cols-2 lg:gap-x-12 2xl:gap-x-32 border-solid border-4 border-red-600 
+            <div className={`fixedl mt-[4rem] sm:mt-[6rem] 2xl:mt-[7.9rem] lg:grid lg:grid-cols-2 lg:gap-x-12 2xl:gap-x-32 border-solid border-0 border-red-600 
                 px-2 pb-4 sm:px-20 sm:pb-6  md:px-36 md:pb-8 lg:px-12 lg:pb-14 2xl:px-[18rem] 2xl:pb-24 
             `}>
 

@@ -42,9 +42,9 @@ export default function AvailableDoctorModalDetails() {
                 px-4  sm:px-[6rem]  md:px-[10rem] lg:px-[18rem]
             `}>
 
-                <div className=" w-full  h-fit border-0 border-solid border-green-600">
+                <div className=" w-full space-y-[2rem] lg:space-y-[4rem]  h-fit border-0 border-solid border-green-600">
 
-                    <h3 className={`mt-6 mb-6 text-center font-semibold  ${textStylesH3}`}>Book appointment</h3>
+                    <h3 className={` text-center font-semibold  ${textStylesH3}`}>Book appointment</h3>
 
                     <form action="" 
                         onSubmit={handleSubmit(onSubmitForm)}
@@ -166,6 +166,8 @@ export default function AvailableDoctorModalDetails() {
 
 
                     </form>
+
+
                 </div>
 
             </div>
