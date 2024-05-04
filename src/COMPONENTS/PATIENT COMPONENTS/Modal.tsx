@@ -34,9 +34,10 @@ export default function Modal({children,show,setShowModal,allModalContent}:modal
             >
 
 
-                <div className={`h-[85%]  w-[95%]  sm:h-[70%] sm:w-[85%] md:h-[55%] lg:h-[70%] xl:w-[70%] 2xl:w-[50%] 2xl:h-[75%]   bg-white shadow-2xl pb-4 pt-6 overflow-y-auto border-0 border-solid border-pink-700`}>
+                <div className={`h-[85%]  w-[95%]  sm:h-[70%] sm:w-[85%] md:h-[55%] lg:h-[70%] xl:w-[70%] 2xl:w-[50%] 2xl:h-[75%]   
+                bg-white shadow-2xl pb-4 pt-6 overflow-y-auto border-0 border-solid border-pink-700`}>
 
-                    <button className={`hidden lg:block mr-8 rounded-[50%] h-[3.5rem] w-[3.5rem] float-right  bg-[#00171F] ${textStylesBody} text-white `} 
+                    <button className={`block mr-8 rounded-[50%] h-[3.5rem] w-[3.5rem] float-right  bg-[#00171F] ${textStylesBody} text-white `} 
                         onClick={ closeModal  }
                     >
                         X
@@ -46,13 +47,14 @@ export default function Modal({children,show,setShowModal,allModalContent}:modal
 
                     {children}
 
-                    <div className="flex justify-center mt-[4rem]">
+
+                    {/* <div className="flex justify-center mt-[4rem]">
                         <button className={`py-2 w-[12rem] rounded-lg bg-[#00171F] ${textStylesBody} text-white `} 
                             onClick={ closeModal  }
                         >
                             close
                         </button>
-                    </div>
+                    </div> */}
 
 
                 </div>
@@ -62,3 +64,11 @@ export default function Modal({children,show,setShowModal,allModalContent}:modal
         </>
     );
 }
+
+/*
+*                    <button className={`hidden lg:block mr-8 rounded-[50%] h-[3.5rem] w-[3.5rem] float-right  bg-[#00171F] ${textStylesBody} text-white `} 
+                        onClick={ closeModal  }
+                    >
+                        X
+                    </button>
+ */
