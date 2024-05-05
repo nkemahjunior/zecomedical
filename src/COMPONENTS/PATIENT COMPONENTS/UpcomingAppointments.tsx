@@ -25,7 +25,7 @@ export default function UpcomingAppointments() {
     return (
         <>
                 <div>
-                    <h3 className={`border-0 border-solid border-black mt-6 lg:mt-12 ${textStylesH3}`}>Upcoming Appoinments</h3>
+                    <h3 className={`border-0 border-solid border-black pt-[1.5rem] lg:pt-0 lg:mt-12 ${textStylesH3}`}>Upcoming Appoinments</h3>
 
                     <div className=" px-[1.2rem] py-[1.6rem] sm:p-[3rem] md:px-[4rem] md:py-[6rem] lg:px-[2rem] lg:py-[6rem] xl:px-[6rem] xl:py-[7rem] mt-8 lg:mt-12 
                     grid grid-cols-2 text-white bg-[#003459]

@@ -19,8 +19,8 @@ export default function AvailableDoctorsSeeAll() {
         <div className="  w-full border-0 border-solid border-red-600 bg-white  pb-[4rem]">
 
             {/* padding of h3 = px of Available doctor component + px of the div holding the Available components here-- the div after this header */}
-            <h3 className={`border-0 border-solid border-black 
-            mt-6   lg:mt-12 ${textStylesH3} text-black
+            <h3 className={`border-0  border-solid border-black 
+            py-[1.5rem] xl:py-[2.5rem]    lg:mt-12 ${textStylesH3} text-black
             px-[1.2rem]  sm:px-[5rem] md:px-[14rem]  lg:px-[15.5rem]  xl:px-[26.5rem] 2xl:px-[49.4rem] 
             `
             }>

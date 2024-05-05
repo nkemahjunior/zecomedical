@@ -71,7 +71,7 @@ export default function PatientNavBar() {
     return (
         <>
             {/**NAVIGATION BAR */}
-                <nav className={`fixed top-0 w-screen z-[100] h-[4rem]   
+                <nav className={`fixed top-0 w-screen z-[100] h-[5.4rem]   
                 sm:h-[6rem] 2xl:h-fit  max-w-[100%]  transition-colors duration-75 
                 border-solid border-0 border-blue-900 bg-[#00171F]
                 px-2  sm:px-4   2xl:py-6
@@ -94,7 +94,7 @@ export default function PatientNavBar() {
 
                         {/* <div className=" flex justify-end xl:hidden"><button onClick={hideNav}>X</button></div> */}
 
-                        {/**this two links are available on all screens*/}
+                        {/**this two links are visible on all screens*/}
                         <li  className={` xl:hover:text-[#ccd1d2] 
                          transition-colors delay-75
                         ${show ? '1024Down:translate-x-[-0%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[0.5s]':' 1024Down:translate-x-[110%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[1s]'} 
@@ -108,17 +108,25 @@ export default function PatientNavBar() {
                         `}>Appointment History</li>
 
                         
-                        {/**this two links are available only on lg and below */}
+                        {/**this three links are visible only on lg and below */}
+
                         <li  className={` xl:hidden
                          transition-colors delay-75
                         ${show ? '1024Down:translate-x-[-0%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[0.7s]':' 1024Down:translate-x-[110%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[1s]'} 
+
+                        `}>Available Doctors</li>
+
+
+                        <li  className={` xl:hidden
+                         transition-colors delay-75
+                        ${show ? '1024Down:translate-x-[-0%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[0.8s]':' 1024Down:translate-x-[110%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[1s]'} 
 
                         `}>Settings</li>
                         
 
                         <li  className={` xl:hidden
                          transition-colors delay-75
-                        ${show ? '1024Down:translate-x-[-0%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[0.8s]':' 1024Down:translate-x-[110%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[1s]'} 
+                        ${show ? '1024Down:translate-x-[-0%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[0.9s]':' 1024Down:translate-x-[110%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[1s]'} 
 
                         `}>Logout</li>
 
@@ -137,10 +145,14 @@ export default function PatientNavBar() {
                     > 
                         <li className={` ${show2 ? 'translate-x-[-0%] transition duration-[0.6s] delay-[0.5s]':' translate-x-[110%] transition duration-[0.7s] delay-[1s]'} 
                         `}> 
+                            Available Doctors
+                        </li>
+                        <li className={` ${show2 ? 'translate-x-[-0%] transition duration-[0.6s] delay-[0.6s]':' translate-x-[110%] transition duration-[0.7s] delay-[1s]'} 
+                        `}> 
                             Settings
                         </li>
 
-                        <li className={` ${show2 ? 'translate-x-[-0%] transition duration-[0.6s] delay-[0.6s]':' translate-x-[110%] transition duration-[0.7s] delay-[1s]'} 
+                        <li className={` ${show2 ? 'translate-x-[-0%] transition duration-[0.6s] delay-[0.7s]':' translate-x-[110%] transition duration-[0.7s] delay-[1s]'} 
                         `}>
                             Logout
                         </li>
