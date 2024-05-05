@@ -13,7 +13,11 @@ export default function PatientHome() {
 <Image className="block"  src={"/dp.jpeg"} alt="logo" fill={true} quality={100} priority={true}  style={{ maxHeight:"100%", maxWidth:"100%"}}/>
 </div> */}
    
-   
+const colorStyles = {
+    textColor:"text-white",
+    buttonText:"text-[#003459]",
+    buttonColor:"bg-white"
+}
 
 
     return ( 
@@ -44,16 +48,16 @@ export default function PatientHome() {
                     <h3 className={`border-0 border-solid border-black mt-6 lg:mt-12 ${textStylesH3} text-[#00171F]`}>Available Doctors</h3>
 
                     <div className="h-full lg:h-[89.2%] bg-[#003459] 
-                    py-[3rem]  md:py-[4rem]  lg:py-[1.6rem]  xl:py-[2.8rem] mt-8 lg:mt-12 
+                    py-[3rem]  md:py-[4rem]  lg:py-[1.6rem]  xl:py-[2.8rem] mt-8 lg:mt-12
                     rounded-xl overflow-hidden shadow-xl
                     ">
                         
                         <div className="space-y-10 md:space-y-14 lg:space-y-32 
                         divide-y-2 divide-white divide">
 
-                                <AvailableDoctor/>
-                                <AvailableDoctor/>
-                                <AvailableDoctor/>
+                                <AvailableDoctor  colorStyles={colorStyles}/>
+                                <AvailableDoctor colorStyles={colorStyles}/>
+                                <AvailableDoctor colorStyles={colorStyles}/>
 
                         </div>
 
