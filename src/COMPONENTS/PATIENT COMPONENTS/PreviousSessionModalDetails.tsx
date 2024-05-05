@@ -29,27 +29,27 @@ export default function PreviousSessionModalDetails() {
 
                         <div>
 
-                            <dl className={` ${textStylesBody} font-semibold space-`}>
+                            <dl className={` ${textStylesBody} font-semibold `}>
                                 
-                                <dt className=" font-medium mt-2">Doctor:</dt>
+                                <dt className=" font-medium mt-4">Doctor:</dt>
                                 <dd className=" text-[#33454c]">Dr. Zino Zelensikino</dd>
 
-                                <dt className=" font-medium mt-2">Specialty:</dt>
+                                <dt className=" font-medium mt-4">Specialty:</dt>
                                 <dd className=" text-[#33454c]">Dentist</dd>
 
-                                <dt className=" font-medium mt-2">date:</dt>
+                                <dt className=" font-medium mt-4">date:</dt>
                                 <dd className=" text-[#33454c]">April 02, 2024</dd>
 
-                                <dt className=" font-medium mt-2 ">Reason:</dt>
+                                <dt className=" font-medium mt-4 ">Reason:</dt>
                                 <dd className=" text-[#33454c]">Consultation</dd>
                                 
-                                <dt className=" font-medium mt-2  ">Your complain:</dt>
+                                <dt className=" font-medium mt-4  ">Your complain:</dt>
                                 <dd className="border-0 border-solid border-red-600 text-[#33454c] max-w-[27rem] ">Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, voluptates!  ipsum dolor Lorem ipsum, d.</dd>
 
-                                <dt className=" font-medium mt-2 ">rende_vouz:</dt>
+                                <dt className=" font-medium mt-4 ">rende_vouz:</dt>
                                 <dd className=" text-[#33454c]">true</dd>
 
-                                <dt className=" font-medium mt-2">Status:</dt>
+                                <dt className=" font-medium mt-4">Status:</dt>
                                 <dd className=" text-[#33454c]">Pending</dd>
 
                             </dl>
