@@ -20,7 +20,7 @@ export interface Users{
     address:String
     email:String
     password:String
-    role:{id:roles}
+    //role:{id:roles}
     
          
 }

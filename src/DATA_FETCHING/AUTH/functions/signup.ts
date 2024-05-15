@@ -39,7 +39,7 @@ export async function signup(incomingData:signupData){
             address:    incomingData.address,
             email:      incomingData.email,
             password:   incomingData.password,
-            role:       {id: roles.UNVERIFIED},
+            //role:       {id: roles.UNVERIFIED}, backend will handle this
         
         }
 
