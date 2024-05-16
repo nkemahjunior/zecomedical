@@ -1,9 +1,34 @@
+'use client'
 import { textStylesBody, textStylesH3 } from "@/COMPONENTS/GENERAL_STYLES/general";
 import LogoBlack from "@/COMPONENTS/GENERAL_STYLES/LogoBlack";
+import { useSetUpAccountDoctor } from "@/DATA_FETCHING/SET_UP_ACCOUNT/hooks/useSetUpAccountDoctor";
+import { doctorAccountType } from "@/TYPES/setUpAccountTypes/setUpAccountTypes";
+import { useRouter } from "next/navigation";
+
+import { useForm } from "react-hook-form";
+
 
  
  
 export default function SetUpAccountDoctor() {
+
+    const router = useRouter();
+    const { register,formState:{errors}, handleSubmit, } = useForm<doctorAccountType>()
+
+
+    const mutation = useSetUpAccountDoctor()
+
+    async function onSubmitForm(data:doctorAccountType){
+
+        const res = mutation.mutateAsync(data)
+        const resData = await res
+ 
+        if(resData?.status == 201) router.replace("/doctor/home")
+ 
+    }
+
+
+
     return (
         <div className={`w-screen h-screen  ${textStylesBody} text-black `}>
            <LogoBlack/>
@@ -24,6 +49,7 @@ export default function SetUpAccountDoctor() {
 
                             <input type="text" id="speciality" 
                             className={` border-[1px] border-solid border-[rgb(36,49,47,0.4)] rounded-lg h-[3.2rem] md:h-[3.8rem] w-[100%] `}
+                            {...register("speciality")}
                             />
                         </div>
 
@@ -32,7 +58,9 @@ export default function SetUpAccountDoctor() {
 
                     <div className="  mt-8 lg:mt-16">
 
-                        <div className=" w-full h-fit ">
+                        <div 
+                            onClick={handleSubmit(onSubmitForm)}
+                            className=" w-full h-fit ">
                             <button className={`bg-[#24312F] text-white 
                             w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95`}>Save</button>
                         </div>

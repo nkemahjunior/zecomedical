@@ -1,9 +1,52 @@
+"use client"
 import { textStylesBody, textStylesH3 } from "@/COMPONENTS/GENERAL_STYLES/general";
 import LogoBlack from "@/COMPONENTS/GENERAL_STYLES/LogoBlack";
+import { useSetUpAccountPatient } from "@/DATA_FETCHING/SET_UP_ACCOUNT/hooks/useSetUpAccountPatient";
+import { patientAccountType } from "@/TYPES/setUpAccountTypes/setUpAccountTypes";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
+/*
+interface formInputTypes {
+    weight: number
+    bloodGroup: string
+    bloodPressure: string
+
+}*/
  
  
 export default function SetUpAccountPatient() {
+
+    const router = useRouter();
+    const { register,formState:{errors}, handleSubmit, } = useForm<patientAccountType>()
+
+ 
+
+
+    const mutation = useSetUpAccountPatient()
+
+    async function onSubmitFormSave(data:patientAccountType){
+
+       const res = mutation.mutateAsync(data)
+       const resData = await res
+
+       if(resData?.status == 201) router.replace("/patient/home")
+
+    }
+
+    async function onSubmitFormSkip(data:patientAccountType){
+
+        const skipData = {weight: null, bloodGroup: null, bloodPressure: null}
+  
+           const res = mutation.mutateAsync(skipData)
+           const resData = await res
+    
+           if(resData?.status == 201) router.replace("/patient/home")
+    }
+
+
+
+
     return (
         <div className={`w-screen h-screen  ${textStylesBody} text-black `}>
            <LogoBlack/>
@@ -13,19 +56,23 @@ export default function SetUpAccountPatient() {
                 <div className="border-0 border-red-700 border-solid ">
                     <h1 className={`${textStylesH3} text-black mb-8`}>Set up your account</h1>
 
-                    <form action="" className="space-y-6 lg:space-y-12">
+                    <form action="" className="space-y-6 lg:space-y-12"
+                    >
                         
                         <div>
                             <label htmlFor="weight" >weight</label>
                             <input type="number" id="weight" 
                             className={` border-[1px] border-solid border-[rgb(36,49,47,0.4)] rounded-lg h-[3.2rem] md:h-[3.8rem] w-[100%] `}
+                            {...register("weight")}
                             />
                         </div>
 
                         <div>
                             <label htmlFor="bloodGroup" id="bloodGroup ">Blood group</label>
                             <select  id="bloodGroup" 
-                            className={` border-[1px] border-solid border-[rgb(36,49,47,0.4)] rounded-lg h-[3.2rem] md:h-[3.8rem] w-[100%] `}>
+                            className={` border-[1px] border-solid border-[rgb(36,49,47,0.4)] rounded-lg h-[3.2rem] md:h-[3.8rem] w-[100%] `}
+                            {...register("bloodGroup")}
+                            >
                                 <option value="A">A+</option>
                                 <option value="A">A-</option>
                                 <option value="B">B+</option>
@@ -41,28 +88,34 @@ export default function SetUpAccountPatient() {
                             <label htmlFor="bloodPressure" 
                             >Blood Pressure</label>
 
-                            <input type="text" id="bloodPressure" 
+                            <input type="number" id="bloodPressure" 
                             className={` border-[1px] border-solid border-[rgb(36,49,47,0.4)] rounded-lg h-[3.2rem] md:h-[3.8rem] w-[100%] `}
+                            {...register("bloodPressure")}
                             />
                         </div>
 
                     </form>
 
-
                     <div className=" flex gap-x-[2rem] lg:gap-x-0 lg:justify-between mt-8 lg:mt-16">
 
                         <div className=" w-full h-fit ">
-                            <button className={`bg-[#24312F] text-white 
+                            <button 
+                            onClick={handleSubmit(onSubmitFormSave)}
+                                className={`bg-[#24312F] text-white border-2 border-solid border-[#24312F]
                             w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95`}>Save</button>
                         </div>
 
 
                         <div className=" w-full h-fit ">
-                            <button className={`bg-white border-2 border-solid border-[#24312F] text-black
+                            <button
+                                onClick={ handleSubmit(onSubmitFormSkip)}
+                                className={`bg-white border-2 border-solid border-[#24312F] text-black
                             w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95`}>Skip</button>
                         </div>
-                        
+
                     </div>
+
+                   
 
 
 

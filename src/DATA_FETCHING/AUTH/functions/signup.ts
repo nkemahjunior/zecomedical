@@ -1,6 +1,5 @@
 
-
-import { roles, Users } from "@/TYPES/Users"
+import { signupReturn } from "@/TYPES/AuthTypes/AuthTypes"
 import { BASE_URL } from "../../utills/constants"
 import toast from "react-hot-toast"
 
@@ -23,12 +22,12 @@ export interface signupData{
 
 
 
-export async function signup(incomingData:signupData){
+export async function signup(incomingData:signupData):Promise<signupReturn | undefined>{
 
     try{
         //const value = cookies().get('name')?.value
 
-        const dataToSend:Users = {
+        const dataToSend = {
 
             name:       incomingData.firstName +"_"+incomingData.lastName,
             username:   incomingData.username,
@@ -57,13 +56,15 @@ export async function signup(incomingData:signupData){
 
         })
 
-        const data = await res.json()
+        const data:signupReturn = await res.json()
 
         //status code conflict
         if(data.status == 409) toast.error(data.message)
 
         //status code created
         if(data.status == 201) toast.success(data.message)
+
+        return data;
 
     }catch(error){
         console.log(error);

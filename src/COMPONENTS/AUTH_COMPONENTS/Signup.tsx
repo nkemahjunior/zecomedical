@@ -7,6 +7,9 @@ import {  useForm } from "react-hook-form";
 import { errorStyle } from "./FormErrorStyles";
 import { useState } from "react";
 import useSignup from "@/DATA_FETCHING/AUTH/hooks/useSignup";
+import { useRouter } from "next/navigation";
+
+
 
 
 
@@ -34,12 +37,10 @@ interface formInputTypes {
 export default function Signup() {
 
 
+    const router = useRouter()
+
     const { register,formState:{errors}, handleSubmit, } = useForm<formInputTypes>()
-
-
     const[showPassword,setShowPassword] = useState(false)
-
-
 
 
     const mutation =  useSignup();
@@ -47,7 +48,10 @@ export default function Signup() {
     async function onSubmitForm(data:any){
 
 
-       mutation.mutate(data);
+        const res = mutation.mutateAsync(data)
+        const resData = await res;
+
+       if(resData) router.push(`verifyEmail/${resData.email}`)
  
     }
 
@@ -229,6 +233,7 @@ export default function Signup() {
                             <div className={` flex flex-col`}>
                                 <label htmlFor="gender">Gender</label>
                                 <select id="gender"
+                                    className={` border-[1px] border-solid border-[rgb(36,49,47,0.4)] rounded-lg h-[3.2rem] md:h-[3.8rem] w-[100%]`}
 
                                     {...register("gender")}
                                 >
@@ -296,7 +301,7 @@ export default function Signup() {
                                     {...register("password", { 
                                         required:true,
                                         pattern:/^[^<>]+$/i,
-                                        min:8
+                                        minLength:8
                                     })}
                                     aria-invalid={errors.password ? "true" : "false"}
                                 />
@@ -305,7 +310,7 @@ export default function Signup() {
                                     <p className={`${errorStyle}`} role="alert">password cannot include those characters</p>
                                 )}
 
-                                {errors.password?.type === "min" && (
+                                {errors.password?.type === "minLength" && (
                                     <p className={`${errorStyle}`} role="alert">password should be atleast 8 characters</p>
                                 )}
 
@@ -313,37 +318,7 @@ export default function Signup() {
 
 
 
-                           {/* <div>
-                                <label htmlFor="repearPaswword">Confirm password</label>
-                                <input 
-                                    
-                                    required minLength={8} type="password" 
-                                    className={` border-[1px] border-solid border-[rgb(36,49,47,0.4)] rounded-lg h-[3.2rem] md:h-[3.8rem] w-[100%]`}
-
-
-                                    {...register("cpassword", { 
-                                        onChange:(e:any) => setCpassword(e.target.value),
-                                        required:true,
-                                        pattern:/^[^<>]+$/i,
-                                        min:8
-                                    })}
-                                    aria-invalid={errors.password ? "true" : "false"}
-                                />
-
-                                { passwordNoMatch && (
-                                    <p className={`${errorStyle}`} >password don&apos;t match</p>
-                                )}
-                                {/* {errors.password?.type === "pattern" && (
-                                    <p className={`${errorStyle}`} role="alert">password cannot include those characters</p>
-                                )}
-
-                                {errors.password?.type === "min" && (
-                                    <p className={`${errorStyle}`} role="alert">password should be atleast 8 characters</p>
-                                )} 
-
-                           </div> */}
-
-
+                           
 
                            <div className="flex gap-x-2"> 
 

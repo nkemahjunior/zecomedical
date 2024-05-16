@@ -15,5 +15,6 @@ export function getCookie(cname:String) {
         return c.substring(name.length, c.length);
       }
     }
+    
     return "";
   }

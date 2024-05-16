@@ -4,7 +4,12 @@
 import { baseTextColor } from "../GENERAL_STYLES/general";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+
+import { roles } from "@/TYPES/AuthTypes/AuthTypes";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 import useSignin from "@/DATA_FETCHING/AUTH/hooks/useSignin";
+import ButtonSpinner from "../GLOBAL_COMPONENTS/ButtonSpinner";
 
 
 
@@ -15,19 +20,34 @@ interface formInputTypes {
 }
  
  
-export default function Signin() {
+export default  function Signin() {
+
+    const router = useRouter()
 
     const { register,formState:{errors}, handleSubmit, } = useForm<formInputTypes>()
-
-
     const[showPassword,setShowPassword] = useState(false)
 
-    const mutation = useSignin();
 
+    const mutation = useSignin();
+    
+    
+    
     async function onSubmitForm(data:any){
 
-      
-        mutation.mutate(data);
+        const res =  mutation.mutateAsync(data)
+        const user = await res
+
+        //console.log(user);
+
+        if(user){
+                        
+            if(user.role?.id == roles.UNVERIFIED) router.push(`verifyEmail/${user.email}`) 
+            if(user.role?.id == roles.VERIFIED) router.replace("/setUpAccount")
+            if(user.role?.id == roles.PATIENT) router.replace("/patient/home")
+            if(user.role?.id == roles.DOCTOR) router.replace("/doctor/home")
+            if(user.role?.id == roles.LAB) router.replace("/labTechnician/home")
+        }
+
    
     }
 
@@ -95,7 +115,7 @@ export default function Signin() {
                            
                            <div className="flex gap-x-2"> 
 
-                              <input onChange={ () => setShowPassword(v => !v) }   type="checkbox" name="" id="" 
+                              <input onChange={ () => setShowPassword(v => !v) }   type="checkbox" name="" id="show" 
                               className=""
                               />
                               <label htmlFor="show">show password</label>
@@ -112,7 +132,7 @@ export default function Signin() {
                                     transition-all delay-75 duration-75
                                     xl:hover:scale-95
                                 `}>
-                                    Signin
+                                    Signin {mutation.isPending && <ButtonSpinner/>}
                                 </button>
                             </div>
 

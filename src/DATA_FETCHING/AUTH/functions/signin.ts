@@ -1,5 +1,8 @@
 import toast from "react-hot-toast"
 import { BASE_URL } from "../../utills/constants"
+import { redirect } from "next/navigation"
+import { sessionType } from "@/TYPES/AuthTypes/AuthTypes"
+import { requestResponse } from "@/TYPES/RequestTypes/RequestResponse"
 
 
 export interface signinData{
@@ -7,7 +10,10 @@ export interface signinData{
     password:String
 }
 
-export async function signin( incomingData:signinData){
+
+
+export async function signin( incomingData:signinData):Promise<sessionType | undefined> {
+
 
     try {
         const res = await fetch(`${BASE_URL}/auth/signin`,{
@@ -22,12 +28,18 @@ export async function signin( incomingData:signinData){
     
         })
     
-        const data = await res.json()
+        //returns 401 and error message incase of wrong password OR user data
+        const data:sessionType | requestResponse  = await res.json()
     
-        //conflict
-        if(data.status == 401) toast.error(data.message)
+        
+        if("status"  in data) {
+            //conflict
+            if(data.status == 401) toast.error( data.message)
+            return 
+        }
 
-        console.log(data);
+        return data;
+        
 
     } catch (error) {
         console.log(error);
