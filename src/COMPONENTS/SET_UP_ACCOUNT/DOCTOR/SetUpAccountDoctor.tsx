@@ -1,6 +1,7 @@
 'use client'
 import { textStylesBody, textStylesH3 } from "@/COMPONENTS/GENERAL_STYLES/general";
 import LogoBlack from "@/COMPONENTS/GENERAL_STYLES/LogoBlack";
+import ButtonSpinner from "@/COMPONENTS/GLOBAL_COMPONENTS/ButtonSpinner";
 import { useSetUpAccountDoctor } from "@/DATA_FETCHING/SET_UP_ACCOUNT/hooks/useSetUpAccountDoctor";
 import { doctorAccountType } from "@/TYPES/setUpAccountTypes/setUpAccountTypes";
 import { useRouter } from "next/navigation";
@@ -62,7 +63,7 @@ export default function SetUpAccountDoctor() {
                             onClick={handleSubmit(onSubmitForm)}
                             className=" w-full h-fit ">
                             <button className={`bg-[#24312F] text-white 
-                            w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95`}>Save</button>
+                            w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95`}>Save {mutation.isPending && <ButtonSpinner/>} </button>
                         </div>
                         
                     </div>

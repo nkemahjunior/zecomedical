@@ -8,6 +8,7 @@ import { errorStyle } from "./FormErrorStyles";
 import { useState } from "react";
 import useSignup from "@/DATA_FETCHING/AUTH/hooks/useSignup";
 import { useRouter } from "next/navigation";
+import ButtonSpinner from "../GLOBAL_COMPONENTS/ButtonSpinner";
 
 
 
@@ -339,7 +340,7 @@ export default function Signup() {
                                     transition-all delay-75 duration-75
                                     xl:hover:scale-95
                                 `}>
-                                    Signup
+                                    Signup && {mutation.isPending && <ButtonSpinner/>}
                                 </button>
                             </div>
 

@@ -1,9 +1,11 @@
 "use client"
 import { textStylesBody, textStylesH3 } from "@/COMPONENTS/GENERAL_STYLES/general";
 import LogoBlack from "@/COMPONENTS/GENERAL_STYLES/LogoBlack";
+import ButtonSpinner from "@/COMPONENTS/GLOBAL_COMPONENTS/ButtonSpinner";
 import { useSetUpAccountPatient } from "@/DATA_FETCHING/SET_UP_ACCOUNT/hooks/useSetUpAccountPatient";
 import { patientAccountType } from "@/TYPES/setUpAccountTypes/setUpAccountTypes";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 /*
@@ -20,6 +22,9 @@ export default function SetUpAccountPatient() {
     const router = useRouter();
     const { register,formState:{errors}, handleSubmit, } = useForm<patientAccountType>()
 
+    const [loadingSave,setLoadingSave] = useState(false)
+    const [loadingSkip,setLoadingSkip] = useState(false)
+
  
 
 
@@ -27,8 +32,10 @@ export default function SetUpAccountPatient() {
 
     async function onSubmitFormSave(data:patientAccountType){
 
+       setLoadingSave(true)
        const res = mutation.mutateAsync(data)
        const resData = await res
+       setLoadingSave(false)
 
        if(resData?.status == 201) router.replace("/patient/home")
 
@@ -38,10 +45,12 @@ export default function SetUpAccountPatient() {
 
         const skipData = {weight: null, bloodGroup: null, bloodPressure: null}
   
-           const res = mutation.mutateAsync(skipData)
-           const resData = await res
-    
-           if(resData?.status == 201) router.replace("/patient/home")
+        setLoadingSkip(true)
+        const res = mutation.mutateAsync(skipData)
+        const resData = await res
+        setLoadingSkip(false)
+
+        if(resData?.status == 201) router.replace("/patient/home")
     }
 
 
@@ -102,7 +111,7 @@ export default function SetUpAccountPatient() {
                             <button 
                             onClick={handleSubmit(onSubmitFormSave)}
                                 className={`bg-[#24312F] text-white border-2 border-solid border-[#24312F]
-                            w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95`}>Save</button>
+                            w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95`}>Save {loadingSave && <ButtonSpinner/>}</button>
                         </div>
 
 
@@ -110,7 +119,7 @@ export default function SetUpAccountPatient() {
                             <button
                                 onClick={ handleSubmit(onSubmitFormSkip)}
                                 className={`bg-white border-2 border-solid border-[#24312F] text-black
-                            w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95`}>Skip</button>
+                            w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95`}>Skip {loadingSkip && <ButtonSpinner/>}</button>
                         </div>
 
                     </div>

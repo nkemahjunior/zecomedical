@@ -1,6 +1,7 @@
 "use client"
 import { textStylesBody, textStylesH3 } from "@/COMPONENTS/GENERAL_STYLES/general";
 import LogoBlack from "@/COMPONENTS/GENERAL_STYLES/LogoBlack";
+import ButtonSpinner from "@/COMPONENTS/GLOBAL_COMPONENTS/ButtonSpinner";
 import { useSetUpAccountLabTech } from "@/DATA_FETCHING/SET_UP_ACCOUNT/hooks/useSetUpAccountLabTech";
 import { labDepts } from "@/TYPES/Lab/laboratories";
 import { labTechnicianAccountType } from "@/TYPES/setUpAccountTypes/setUpAccountTypes";
@@ -61,7 +62,7 @@ export default function SetUpAccountLabTechnician() {
                             <button 
                                 onClick={handleSubmit(onSubmitForm)}
                                 className={`bg-[#24312F] text-white 
-                            w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95`}>Save</button>
+                            w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95`}>Save {mutation.isPending && <ButtonSpinner/> }</button>
                         </div>
                         
                     </div>

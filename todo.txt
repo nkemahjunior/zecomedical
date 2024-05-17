@@ -1,0 +1,6 @@
+
+a user should not be able to create a doctor/patient/lab account with the same username/email
+
+add loading states for the doctor/patient/lab set up account pages
+
+add profile photo
