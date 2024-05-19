@@ -1,9 +1,47 @@
 import { BASE_URL } from "@/DATA_FETCHING/utills/constants";
 import { getCookie } from "@/DATA_FETCHING/utills/helpers";
 import { requestResponse } from "@/TYPES/RequestTypes/RequestResponse";
-import { doctorAccountType, labTechnicianAccountType, patientAccountType } from "@/TYPES/setUpAccountTypes/setUpAccountTypes";
+import { doctorAccountType, fileUploadResponse, labTechnicianAccountType, patientAccountType } from "@/TYPES/setUpAccountTypes/setUpAccountTypes";
 import toast from "react-hot-toast";
 
+
+
+export async function uploadProfilePhoto(data:FormData){
+
+    //const cookieStore = cookies() can work only on server, so use custom method to get the cookie
+
+   try{
+        const csrf = getCookie("XSRF-TOKEN")
+
+        if(csrf == "" ||  !csrf) throw new Error("bad user")
+
+        const res = await fetch(`${BASE_URL}/upload/profilePicture`,{
+            credentials:"include",
+            headers:{
+
+                "X-XSRF-TOKEN": `${csrf}`,
+                //"Content-Type": "application/json", 
+            },
+            body:data,
+            method:"POST"
+            
+        })
+
+        const resData:fileUploadResponse = await res.json()
+
+        if(resData.status == 200) toast.success(resData.message)
+        
+        
+        //console.log(resData);
+
+        return resData
+
+    }catch(error){
+        toast.error("error happened, please try again later")
+        console.log(error)
+   }
+
+}
 
 
 export async function setUpAccountPatient(data:patientAccountType){
@@ -49,7 +87,8 @@ export async function setUpAccountPatient(data:patientAccountType){
         return resData
 
     }catch(error){
-    console.log(error)
+        toast.error("error happened, please try again later")
+        console.log(error)
    }
 
 }
@@ -97,7 +136,8 @@ export async function setUpAccountDoctor(data:doctorAccountType){
         return resData
 
     }catch(error){
-    console.log(error)
+        toast.error("error happened, please try again later")
+        console.log(error)
    }
 
 }
@@ -144,7 +184,8 @@ export async function setUpAccountLabTechnician(data:labTechnicianAccountType){
         return resData
 
     }catch(error){
-    console.log(error)
+        toast.error("error happened, please try again later")
+        console.log(error)
    }
    
 }

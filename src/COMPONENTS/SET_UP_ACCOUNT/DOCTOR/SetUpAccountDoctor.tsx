@@ -24,7 +24,7 @@ export default function SetUpAccountDoctor() {
         const res = mutation.mutateAsync(data)
         const resData = await res
  
-        if(resData?.status == 201) router.replace("/doctor/home")
+        if(resData?.status == 201) router.push("profilePhoto")
  
     }
 

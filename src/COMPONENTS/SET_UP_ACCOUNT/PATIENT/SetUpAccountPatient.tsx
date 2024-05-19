@@ -37,7 +37,7 @@ export default function SetUpAccountPatient() {
        const resData = await res
        setLoadingSave(false)
 
-       if(resData?.status == 201) router.replace("/patient/home")
+       if(resData?.status == 201) router.push("profilePhoto")
 
     }
 
@@ -50,7 +50,7 @@ export default function SetUpAccountPatient() {
         const resData = await res
         setLoadingSkip(false)
 
-        if(resData?.status == 201) router.replace("/patient/home")
+        if(resData?.status == 201) router.push("profilePhoto")
     }
 
 

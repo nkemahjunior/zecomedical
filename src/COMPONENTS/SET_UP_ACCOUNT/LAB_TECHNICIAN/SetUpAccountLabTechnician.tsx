@@ -23,7 +23,7 @@ export default function SetUpAccountLabTechnician() {
        const res = mutation.mutateAsync(data)
        const resData = await res
 
-       if(resData?.status == 201) router.replace("/labTechnician/home")
+       if(resData?.status == 201) router.push("profilePhoto")
 
     }
 

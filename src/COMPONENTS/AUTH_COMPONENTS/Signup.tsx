@@ -9,6 +9,7 @@ import { useState } from "react";
 import useSignup from "@/DATA_FETCHING/AUTH/hooks/useSignup";
 import { useRouter } from "next/navigation";
 import ButtonSpinner from "../GLOBAL_COMPONENTS/ButtonSpinner";
+import Link from "next/link";
 
 
 
@@ -66,7 +67,7 @@ export default function Signup() {
                 <div className="relative h-[30dvh] lg:h-full w-full  "> 
                     <Image alt="image of doctors" src={"/formimage.jpg"} fill style={{objectFit:"cover"}}/>
 
-                    <div className="absolute z-20 ">
+                    <div className="absolute z-20 border-0 border-solid border-red-500 h-96">
                         <Logo/>
                     </div>
 
@@ -87,6 +88,7 @@ export default function Signup() {
 
                 </div>
 
+
                     {/**grid 2 */}
                 <div className="h-fit  w-full flex justify-center items-center  ">
 
@@ -99,7 +101,7 @@ export default function Signup() {
                                 Join Zecomedical
                             </h2>
 
-                            <p className="text-xl xl:text-2xl 2xl:text-3xl   text-center  ">Already have an account ? <span className=" underline text-[rgb(36,49,47,0.7)]">signin</span></p>
+                            <p className="text-xl xl:text-2xl 2xl:text-3xl   text-center  ">Already have an account ? <span className=" underline text-[rgb(36,49,47,0.7)]"><Link href={"/auth/signin"}>signin</Link></span></p>
 
                         </div>
 
@@ -340,7 +342,7 @@ export default function Signup() {
                                     transition-all delay-75 duration-75
                                     xl:hover:scale-95
                                 `}>
-                                    Signup && {mutation.isPending && <ButtonSpinner/>}
+                                    Signup  {mutation.isPending && <ButtonSpinner/>}
                                 </button>
                             </div>
 

@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import useSignin from "@/DATA_FETCHING/AUTH/hooks/useSignin";
 import ButtonSpinner from "../GLOBAL_COMPONENTS/ButtonSpinner";
+import Link from "next/link";
 
 
 
@@ -141,7 +142,7 @@ export default  function Signin() {
 
 
 
-                        <p className="text-xl xl:text-2xl 2xl:text-3xl   text-center  ">Don&apos;t have an account ? <span className=" underline text-[rgb(36,49,47,0.7)]">signup</span></p>
+                        <p className="text-xl xl:text-2xl 2xl:text-3xl   text-center  ">Don&apos;t have an account ? <span className=" underline text-[rgb(36,49,47,0.7)]"><Link href={"/auth/signup"}>signup</Link></span></p>
                     </div>
 
                 </div>

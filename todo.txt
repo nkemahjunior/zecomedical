@@ -4,3 +4,5 @@ a user should not be able to create a doctor/patient/lab account with the same u
 add loading states for the doctor/patient/lab set up account pages
 
 add profile photo
+
+do role authorization on each of the routes, coz a user can still access them by changing the address on the browser navigation

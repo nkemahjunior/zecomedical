@@ -11,8 +11,10 @@ export async function middleware(request:NextRequest){
     //console.log(session);
 
    
+
+   
  
-    if(session?.isAuthenticated == false) {
+    if(!session || session?.isAuthenticated == false) {
         return NextResponse.redirect(new URL('/auth/signin', request.url))
     }
 

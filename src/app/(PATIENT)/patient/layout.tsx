@@ -3,6 +3,9 @@ import PatientNavBar from "@/COMPONENTS/PATIENT COMPONENTS/PatientNavBar";
  
  
 export default function PatientLayout({children,}: Readonly<{ children: React.ReactNode;}>) {
+
+    
+
     return (
         <>
           <PatientNavBar/> 

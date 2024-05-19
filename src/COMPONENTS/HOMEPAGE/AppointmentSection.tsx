@@ -1,10 +1,9 @@
 import { baseTextColor } from "@/COMPONENTS/GENERAL_STYLES/general";
 import { AiOutlineSolution } from "react-icons/ai";
 import { FaUserDoctor } from "react-icons/fa6";
-import { GoGitPullRequest } from "react-icons/go";
-import { PiGitPullRequestLight, PiGitPullRequestThin } from "react-icons/pi";
+import {  PiGitPullRequestThin } from "react-icons/pi";
 import { TbCalendarPlus } from "react-icons/tb";
-import { VscGitPullRequestCreate } from "react-icons/vsc";
+
 
  
  

@@ -5,14 +5,19 @@ import toast from "react-hot-toast";
 
 export async function resendEmail(email:string){
 
-    const res = await fetch(`${BASE_URL}/auth/resendVerificationEmail?email=${email}`)
-    const data:requestResponse = await res.json()
-
-    if(data.status == 200){
-        toast.success(data.message)
-    }else{
-        toast.error(data.message)
+    try {
+        const res = await fetch(`${BASE_URL}/auth/resendVerificationEmail?email=${email}`)
+        const data:requestResponse = await res.json()
+    
+        if(data.status == 200){
+            toast.success(data.message)
+        }else{
+            toast.error(data.message)
+        }
+    
+        return data
+    } catch (error) {
+        toast.error("error happened, please try again later")
+        console.log(error);
     }
-
-    return data
 }

@@ -30,7 +30,7 @@ export async function signin( incomingData:signinData):Promise<sessionType | und
     
         //returns 401 and error message incase of wrong password OR user data
         const data:sessionType | requestResponse  = await res.json()
-    
+
         
         if("status"  in data) {
             //conflict
@@ -42,6 +42,7 @@ export async function signin( incomingData:signinData):Promise<sessionType | und
         
 
     } catch (error) {
+        toast.error("error signing in, please try again later")
         console.log(error);
     }
     

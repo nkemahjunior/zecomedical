@@ -31,3 +31,7 @@ export interface signupReturn{
   message:string
   email:string
 }
+
+export interface roleType{
+  role: { id: Number , roles: string }
+}

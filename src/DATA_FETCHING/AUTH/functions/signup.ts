@@ -67,6 +67,7 @@ export async function signup(incomingData:signupData):Promise<signupReturn | und
         return data;
 
     }catch(error){
+        toast.error("error happened, please try again later")
         console.log(error);
     }
 }

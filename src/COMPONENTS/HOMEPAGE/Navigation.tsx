@@ -6,6 +6,7 @@ import "./Menu.css"
 import { BASE_COLOR, navHeight_2xl, navHeight_phones, navHeight_sm } from "@/COMPONENTS/GENERAL_STYLES/general";
 import Logo from "./Logo";
 import { test2 } from "@/app/fonts";
+import Link from "next/link";
 
  
  
@@ -146,13 +147,13 @@ export default function Navigation() {
                         hover:text-[#96B3BC] transition-colors delay-75
                         ${show ? 'phones:translate-x-[-0%] phones:transition phones:duration-[0.7s] phones:delay-[0.8s]':' phones:translate-x-[110%] phones:transition phones:duration-[0.7s] phones:delay-[1s]'} 
                         
-                        sm:w-[7rem] md:w-[9rem] lg:w-[11rem] 2xl:w-[15rem] sm:flex sm:items-end  `}>Signin</li>
+                        sm:w-[7rem] md:w-[9rem] lg:w-[11rem] 2xl:w-[15rem] sm:flex sm:items-end  `}><Link  href={"/auth/signin"}>Signin</Link></li>
 
                         <li  className={` 
                         hover:text-[#96B3BC] transition-colors delay-75
                         ${show ? 'phones:translate-x-[-0%] phones:transition phones:duration-[0.7s] phones:delay-[0.9s]':' phones:translate-x-[110%] phones:transition phones:duration-[0.7s] phones:delay-[1s]'} 
                         
-                        sm:w-[7rem] md:w-[9rem] lg:w-[11rem] 2xl:w-[15rem] sm:flex sm:items-end  `}>Signup</li>
+                        sm:w-[7rem] md:w-[9rem] lg:w-[11rem] 2xl:w-[15rem] sm:flex sm:items-end  `}><Link href={"/auth/signup"}>Signup</Link></li>
                     </ul>
 
 
@@ -210,7 +211,7 @@ export default function Navigation() {
                         <button className="p-2 bg-white text-[#3D96A7] w-[20rem] lg:w-[24rem] h-[4rem] xl:h-[5rem] md:text-lg lg:text-xl 2xl:text-2xl
                             rounded-lg shadow-xl  hover:bg-[#134349] hover:text-white hover:scale-95 transition delay-75 duration-75
                         ">
-                            Book Appointment
+                            <Link href={"/patient/home"}>Book Appointment</Link>
                         </button>
                         </div>
                     </div>
