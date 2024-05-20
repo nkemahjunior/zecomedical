@@ -5,7 +5,7 @@ import { roleCheckDoctors } from "@/DATA_FETCHING/AUTH/functions/roleCheckDoctor
  
 export default async function Page() {
 
-    await roleCheckDoctors()
+    //await roleCheckDoctors()
 
     return (
         <>
