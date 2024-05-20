@@ -1,12 +1,12 @@
 'use client'
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
-import "./Hamburger.css";
 import "./Menu.css"
 import { BASE_COLOR, navHeight_2xl, navHeight_phones, navHeight_sm } from "@/COMPONENTS/GENERAL_STYLES/general";
 import Logo from "./Logo";
 import { test2 } from "@/app/fonts";
 import Link from "next/link";
+import HamburgerButton from "../GLOBAL_COMPONENTS/HamburgerButton";
 
  
  
@@ -158,15 +158,8 @@ export default function Navigation() {
 
 
                     {/**Hamburger menu,phones only */}
-                    <div className="flex items-center sm:hidden " onClick={ showNav}>
-                        <div className=" space-y-1  border-solid border-0 border-purple-700 h-[24px] w-[44px]">
-
-                            <div className="hamburger1 float-right w-[40px] h-[2px] bg-white"></div>
-                            <div className="hamburger2 float-right w-[34px] h-[2px] bg-white "></div>
-                            <div className="hamburger3 float-right w-[28px] h-[2px] bg-white "></div>
-                        
-                            
-                        </div>
+                    <div className=" sm:hidden" onClick={ showNav}>
+                        <HamburgerButton/>
                     </div>
 
                 </div>

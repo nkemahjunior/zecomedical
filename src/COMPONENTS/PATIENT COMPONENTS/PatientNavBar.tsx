@@ -71,6 +71,7 @@ export default function PatientNavBar() {
     return (
         <>
             {/**NAVIGATION BAR */}
+             {/**if you eventually change the height of this nav bar, dont forget to visit the doctor layout file */}
                 <nav className={`fixed top-0 w-screen z-[100] h-[5.4rem]   
                 sm:h-[6rem] 2xl:h-fit  max-w-[100%]  transition-colors duration-75 
                 border-solid border-0 border-blue-900 bg-[#00171F]

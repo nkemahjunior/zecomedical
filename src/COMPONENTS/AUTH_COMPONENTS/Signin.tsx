@@ -128,7 +128,7 @@ export default  function Signin() {
                                 <button 
                                     aria-disabled={mutation.isPending}
                                     className={ ` 
-                                    ${mutation.isPending ? "bg-[#666f6d] cursor-not-allowed " : `bg-[#24312F]`}
+                                    ${mutation.isPending ? "bg-[#666f6d] pointer-events-none " : `bg-[#24312F]`}
                                     text-white text-center w-[100%] h-[3.8rem] md:h-[4.6rem] rounded-lg shadow-lg
                                     transition-all delay-75 duration-75
                                     xl:hover:scale-95
