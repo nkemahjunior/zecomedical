@@ -62,7 +62,7 @@ export default function SetUpAccountDoctor() {
                         <div 
                             onClick={handleSubmit(onSubmitForm)}
                             className=" w-full h-fit ">
-                            <button className={`bg-[#24312F] text-white 
+                            <button className={`bg-[#24312F] text-white ${mutation.isPending && " cursor-not-allowed pointer-events-none"}
                             w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95`}>Save {mutation.isPending && <ButtonSpinner/>} </button>
                         </div>
                         

@@ -1,38 +1,44 @@
+"use client"
+
 import { useForm } from "react-hook-form"
 import { errorStyle } from "../AUTH_COMPONENTS/FormErrorStyles"
 import { textStylesBody, textStylesH3 } from "../GENERAL_STYLES/general"
+import { BookAppointmentType, DoctorsAvailableType } from "@/TYPES/Patient/PatientTypes"
+import { useBookAppointment } from "@/DATA_FETCHING/PATIENT/hooks/useBookAppointment"
+import { useContext } from "react"
+import { contextTypes, ModalContext } from "@/app/ModalProvider"
+import ButtonSpinner from "../GLOBAL_COMPONENTS/ButtonSpinner"
 
+
+
+
+export default function AvailableDoctorModalDetails({appointmentData}:{appointmentData:DoctorsAvailableType}) {
+
+    const { register,formState:{errors}, handleSubmit, } = useForm<BookAppointmentType>()
+
+    const {setShowModal,setModalContent} = useContext(ModalContext) as contextTypes
+
+    const year = appointmentData.timeFrom.slice(0,4)
+    const month = appointmentData.timeFrom.slice(5,7)
+    const day = appointmentData.timeFrom.slice(8,10)
+
+    const mutation = useBookAppointment()
+
+    async function onSubmitForm(data:BookAppointmentType){
+
+       const res = await mutation.mutateAsync(data)
+
+       //success
+       if(res?.status == 201){
+            setModalContent(null)
+            setShowModal(false)
+       }
+       
  
- 
- interface formInputTypes {
-    reason :{
-        checkup: string
-        consultation:string
+  
     }
 
-    complainNotes: string
-    doctorID: number
-    appointmentID: number
-    startYear: number
-    startMonth: number
-    startDay: number
-    startDay2: number
-    
-}
 
-
- 
-
-export default function AvailableDoctorModalDetails() {
-
-    const { register,formState:{errors}, handleSubmit, } = useForm<formInputTypes>()
-
-    async function onSubmitForm(data:any){
-
-
-       console.log(data);
-  
-     }
 
     return (
         <>
@@ -68,33 +74,33 @@ export default function AvailableDoctorModalDetails() {
 
                         
                         <div className={` flex flex-col `}>
-                            <label htmlFor="complainNotes">Your complain</label>
+                            <label htmlFor="complain_notes">Your complain</label>
                             <textarea
-                                id="complainNotes" 
+                                id="complain_notes" 
                                 //cols = 20 default is 20
                                 rows={5}
                                 required 
                                 className={` border-[1px] border-solid border-[rgb(36,49,47,0.4)] rounded-lg  w-[100%]`}
 
-                                {...register("complainNotes", { 
+                                {...register("complain_notes", { 
                                     required:true,
                                     pattern:/^[^<>]+$/i,
                                     max:255,
                                     min:1
                                 })}
-                                aria-invalid={errors.complainNotes ? "true" : "false"}
+                                aria-invalid={errors.complain_notes ? "true" : "false"}
                             ></textarea>
 
 
-                            {errors.complainNotes?.type === "pattern" && (
+                            {errors.complain_notes?.type === "pattern" && (
                                 <p className={`${errorStyle}`} role="alert">invalid characters in text</p>
                             )}
 
-                            {errors.complainNotes?.type === "min" && (
+                            {errors.complain_notes?.type === "min" && (
                                 <p className={`${errorStyle}`} role="alert">Complain notes should not be empty</p>
                             )}
 
-                            {errors.complainNotes?.type === "max" && (
+                            {errors.complain_notes?.type === "max" && (
                                 <p  className={`${errorStyle}`} role="alert">Complain notes should have atmost 255 letters</p>
                             )}
 
@@ -104,9 +110,9 @@ export default function AvailableDoctorModalDetails() {
                         <div>
                             <input 
                                 type="hidden"
-                                value={12355} //place the doctor id here boy
+                                value={appointmentData.doctorID.doctor_id} //place the doctor id here boy
 
-                                {...register("doctorID")}
+                                {...register("doctor_id")}
                                 />
                         </div>
 
@@ -114,16 +120,16 @@ export default function AvailableDoctorModalDetails() {
                         <div>
                             <input 
                                 type="hidden"
-                                value={12355} //place the appointment id here boy
+                                value={appointmentData.id} //place the appointment id here boy
 
-                                {...register("appointmentID")}
+                                {...register("appointment_id")}
                                 />
                         </div>
 
                         <div>
                             <input 
                                 type="hidden"
-                                value={12355} //place the startyear here boy
+                                value={year} //place the startyear here boy
 
                                 {...register("startYear",)}
                                 />
@@ -132,7 +138,7 @@ export default function AvailableDoctorModalDetails() {
                         <div>
                             <input 
                                 type="hidden"
-                                value={12355} //place the startmonth here boy
+                                value={month} //place the startmonth here boy
 
                                 {...register("startMonth")}
                                 />
@@ -142,7 +148,7 @@ export default function AvailableDoctorModalDetails() {
                         <div>
                             <input 
                                 type="hidden"
-                                value={12355} //place the startday here boy
+                                value={day} //place the startday here boy
 
                                 {...register("startDay")}
                                 />
@@ -154,13 +160,13 @@ export default function AvailableDoctorModalDetails() {
                             <button 
                                 //  aria-disabled={mutation.isPending}
                                 className={ ` 
-                                ${/*mutation.isPending ? "bg-[6f6d] cursor-not-allowed " : `bg-[#00171F]`*/1}
+                                ${mutation.isPending ? "bg-[#4d5d62] cursor-not-allowed pointer-events-none " : `bg-[#00171F]`}
                                 mt-[1rem]
                                 text-white text-center w-[60%] h-[3.8rem] md:h-[4.6rem] rounded-lg shadow-lg
-                                transition-all delay-75 duration-75 bg-[#00171F]
+                                transition-all delay-75 duration-75 
                                 xl:hover:scale-95 
                             `}>
-                                Book
+                                Book {mutation.isPending && <ButtonSpinner/>}
                             </button>
                         </div>
 

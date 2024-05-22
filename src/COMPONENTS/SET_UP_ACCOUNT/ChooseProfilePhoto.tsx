@@ -103,7 +103,7 @@ export default function ChooseProfilePhoto() {
 
                             <div className=" w-full h-fit mt-16 flex justify-center items-center">
                                 <button className={`bg-[#24312F] text-white 
-                                    w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95`}
+                                    w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95 ${mutation.isPending && " cursor-not-allowed pointer-events-none"}`}
                                     type="submit"
                                     
                                 >

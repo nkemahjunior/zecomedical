@@ -28,6 +28,8 @@ export async function getUser():Promise<sessionType | undefined>{
         const data:sessionType = await res.json();
         //console.log(data);
         
+
+        //console.log(data);
     
         return data
     

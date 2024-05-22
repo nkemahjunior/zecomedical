@@ -14,9 +14,9 @@ export async function middleware(request:NextRequest){
 
    
  
-   /* if(!session || session?.isAuthenticated == false) {
+    if(!session || session?.isAuthenticated == false) {
         return NextResponse.redirect(new URL('/auth/signin', request.url))
-    }*/
+    }
 
 }
 

@@ -118,7 +118,7 @@ export default function SetUpAccountPatient() {
                         <div className=" w-full h-fit ">
                             <button
                                 onClick={ handleSubmit(onSubmitFormSkip)}
-                                className={`bg-white border-2 border-solid border-[#24312F] text-black
+                                className={`bg-white border-2 border-solid border-[#24312F] text-black ${mutation.isPending && " cursor-not-allowed pointer-events-none"}
                             w-[15rem] py-[1rem] rounded-lg  xl:hover:scale-95`}>Skip {loadingSkip && <ButtonSpinner/>}</button>
                         </div>
 
