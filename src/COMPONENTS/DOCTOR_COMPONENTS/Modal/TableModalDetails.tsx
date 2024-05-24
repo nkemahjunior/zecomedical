@@ -8,6 +8,7 @@ import { IoClose } from "react-icons/io5";
  
 export default function TableModalDetails({data}:{data:appointmentReqType}) {
 
+    //table rows of accepted and upcoming requests open this modal
     const {open,setOpen,content,setContent} = useContext(DoctorModalContext) as doctorContextTypes
 
     function close(){

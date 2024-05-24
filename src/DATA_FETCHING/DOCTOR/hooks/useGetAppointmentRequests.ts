@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getAppointmentRequests } from "../functions/getAppointmentRequest";
+import { getAcceptedAppointmentRequest, getAppointmentRequests } from "../functions/getAppointmentRequest";
 
 
 export function useGetAppointmentRequests(page:number){
@@ -17,6 +17,18 @@ export function useGetAppointmentRequests(page:number){
             queryKey:[page + 1]
         })
     
+
+    return query;
+}
+
+
+
+export function useGetAcceptedUpcomingRequests(page:number){
+
+    const query = useQuery({
+        queryKey:["appnReqAccepted"],
+        queryFn: () => getAcceptedAppointmentRequest(page)
+    })
 
     return query;
 }

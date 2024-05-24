@@ -1,11 +1,9 @@
 "use client"
 
 import { textStylesBody, textStylesH3, textStylesH4 } from "@/COMPONENTS/GENERAL_STYLES/general";
-import {  ChangeEvent, FormEvent, Fragment, MouseEvent, useCallback, useContext, useEffect, useRef, useState } from "react";
+import {  ChangeEvent, FormEvent,  useCallback,  useEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
-import { IoClose, IoFilterOutline } from "react-icons/io5";
-import { TbLetterX, TbTrashXFilled } from "react-icons/tb";
-import { TiTick } from "react-icons/ti";
+import {  IoFilterOutline } from "react-icons/io5";
 import "../AppointmentRequests/filter.css"
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useGetAppointmentRequests } from "@/DATA_FETCHING/DOCTOR/hooks/useGetAppointmentRequests";
@@ -231,7 +229,7 @@ export default function AppointmentRequests() {
             </div>
 
 
-            {/* filters */}
+             {/* filters: css code for close/open found in filter.css file */}
             <div className={` border-0 border-solid border-blue-950 w-full bg-white
                 space-y-[2rem] px-[1.5rem]  py-[2rem] overflow-y-hidden
                 rounded-xl shadow-xl

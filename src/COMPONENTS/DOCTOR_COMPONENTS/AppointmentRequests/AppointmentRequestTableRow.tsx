@@ -10,7 +10,7 @@ import { extractDate } from "@/helpers/extractDate";
 import { useChangeAppointmentStatus } from "@/DATA_FETCHING/DOCTOR/hooks/useChangeAppointmentStatus";
 import ButtonSpinner from "@/COMPONENTS/GLOBAL_COMPONENTS/ButtonSpinner";
 import { useRouter } from "next/navigation";
-import { wait10 } from "@/DATA_FETCHING/AUTH/functions/wait10";
+
 
 
 interface propsType{
