@@ -6,6 +6,7 @@
 html {
   font-size: 62.5%; /* changes a default 16px font size to 10px e.g 14px = 1.4rem, 20px = 2rem */
   overflow-x: hidden;
+  /* box-sizing: border-box; */
 }
 
 
