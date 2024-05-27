@@ -2,8 +2,11 @@
 import { doctorContextTypes, DoctorModalContext } from "@/app/(DOCTOR)/doctor/DoctorModalProvider";
 import { extractDate } from "@/helpers/extractDate";
 import { appointmentReqType } from "@/TYPES/Doctor/doctorTypes";
-import { useContext } from "react";
+import { MouseEvent, useContext } from "react";
 import TableModalDetails from "../Modal/TableModalDetails";
+import { useStartConsultation } from "@/DATA_FETCHING/DOCTOR/hooks/useStartConsultation";
+import { useRouter } from "next/navigation";
+import ButtonSpinner from "@/COMPONENTS/GLOBAL_COMPONENTS/ButtonSpinner";
 
 interface propsType{
     data:appointmentReqType,
@@ -13,12 +16,8 @@ interface propsType{
 export default function UpcomingAppointmentTableRow({data}:propsType) {
 
     
-    
-   
-
     const {setOpen, setContent} = useContext(DoctorModalContext) as doctorContextTypes
-
-
+    const router = useRouter()
 
 
     const {year,month,day,hour,min} = extractDate(data.dateTime)
@@ -28,6 +27,16 @@ export default function UpcomingAppointmentTableRow({data}:propsType) {
 
         setOpen(true)
         setContent(<TableModalDetails data={data}/>)
+    }
+
+    const mutation = useStartConsultation()
+
+    async function startConsultationH(e:MouseEvent<HTMLButtonElement>,patientID:number, patientName:string){
+        e.stopPropagation()
+
+        const res = await mutation.mutateAsync(patientID)
+
+        if(res?.status == 201) router.push(`/doctor/consultation/start/${patientID}/${patientName}`)
     }
 
     
@@ -64,9 +73,10 @@ export default function UpcomingAppointmentTableRow({data}:propsType) {
             <td className=" px-[2rem]  py-[1rem] 2xl:py-[2rem] lg:py-[1.2rem] ">
 
                 <button  className={` transition-all delay-75 duration-75
-                xl:hover:scale-95   p-2  rounded-lg shadow-2xl bg-green-400 xl:bg-green-500`}
+                xl:hover:scale-95   py-2 px-4 rounded-lg shadow-2xl bg-green-400 xl:bg-green-500 flex items-baseline justify-center`}
+                onClick={ (e:MouseEvent<HTMLButtonElement>) => startConsultationH(e,Number(data.patient_id.id), data.patient_id.patientID.name)}
                 > 
-                    Consult Patient
+                    Consult&nbsp;Patient&nbsp;{mutation.isPending && <ButtonSpinner/> }
                 </button>
 
 

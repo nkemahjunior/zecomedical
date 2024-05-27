@@ -13,7 +13,7 @@ export async function uploadProfilePhoto(data:FormData){
    try{
         const csrf = getCookie("XSRF-TOKEN")
 
-        if(csrf == "" ||  !csrf) throw new Error("bad user")
+        //if(csrf == "" ||  !csrf) throw new Error("bad user")
 
         const res = await fetch(`${BASE_URL}/upload/profilePicture`,{
             credentials:"include",
@@ -148,7 +148,7 @@ export async function setUpAccountLabTechnician(data:labTechnicianAccountType){
     try{
         const csrf = getCookie("XSRF-TOKEN")
 
-        if(csrf == "" ||  !csrf) throw new Error("bad user")
+        //if(csrf == "" ||  !csrf) throw new Error("bad user")
 
         const res = await fetch(`${BASE_URL}/account/activateLabTechnicianAccount`,{
             credentials:"include",

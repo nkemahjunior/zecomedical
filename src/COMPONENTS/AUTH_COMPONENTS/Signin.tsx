@@ -46,7 +46,7 @@ export default  function Signin() {
             if(user.role?.id == roles.VERIFIED) router.replace("/setUpAccount")
             if(user.role?.id == roles.PATIENT) router.replace("/patient/home")
             if(user.role?.id == roles.DOCTOR) router.replace("/doctor/home")
-            if(user.role?.id == roles.LAB) router.replace("/labTechnician/home")
+            if(user.role?.id == roles.LAB) router.replace("/lab")
         }
 
    

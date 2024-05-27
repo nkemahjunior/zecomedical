@@ -1,0 +1,103 @@
+
+
+/**768 downward*/
+@media screen and (max-width: 768px) {
+    .close {
+        height: 28rem;
+        animation-name: myfilter;
+        animation-duration: 0.3s;
+        animation-delay: 0.1s;
+        animation-fill-mode:forwards;
+    
+    }
+    
+    
+    @keyframes myfilter {
+        
+        from{
+            
+            height:28rem;
+        }
+    
+        to{
+            height:5.6rem;
+        }
+    }
+    
+    
+    
+    
+    .open {
+        height: 28rem;
+        animation-name: myfilter1;
+        animation-duration: 0.3s;
+        animation-delay: 0.1s;
+        animation-fill-mode:backwards;
+    
+    }
+    
+    
+    @keyframes myfilter1 {
+        from{
+            height:5.6rem;
+        }
+    
+        to{
+            height:28rem;
+        }
+    }
+}
+
+
+
+
+/*769 upward*/
+@media screen and (min-width:769px) {
+
+
+.close {
+    height: 36rem;
+    animation-name: myfilter;
+    animation-duration: 0.3s;
+    animation-delay: 0.1s;
+    animation-fill-mode:forwards;
+
+}
+
+
+@keyframes myfilter {
+    
+    from{
+        
+        height:36rem;
+    }
+
+    to{
+        height:8rem;
+    }
+}
+
+
+
+
+.open {
+    height: 36rem;
+    animation-name: myfilter1;
+    animation-duration: 0.3s;
+    animation-delay: 0.1s;
+    animation-fill-mode:backwards;
+
+}
+
+
+@keyframes myfilter1 {
+    from{
+        height:8rem;
+    }
+
+    to{
+        height:36rem;
+    }
+}
+    
+}

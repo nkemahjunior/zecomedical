@@ -88,3 +88,13 @@ export interface createAppointmentType {
     appointmentId:number
     status:string
 }
+
+
+export interface sendToLabType{
+
+ labName:string
+ patientID:number
+ patientName:string
+ labTestRequest:string[]
+
+}

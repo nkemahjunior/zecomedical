@@ -215,7 +215,7 @@ export default function UpcomingAppointmentsDoc() {
 
 
             <div className="w-full mb-[2rem]">
-                <h1 className={`${textStylesH3}`}>Appointment Requests Filters</h1>
+                <h1 className={`${textStylesH3}`}>Upcoming Appointments Filters</h1>
             </div>
 
 
@@ -334,7 +334,7 @@ export default function UpcomingAppointmentsDoc() {
                 <div className="w-[300%] xl:w-[200%] 2xl:w-full">  
 
                     <table className=" table-auto w-full " >
-                        <caption className={`${ textStylesH3} text-start pl-4 2xl:pl-0 2xl:text-center  py-4 `}>Appointment requests</caption>
+                        <caption className={`${ textStylesH3} text-start pl-4 2xl:pl-0 2xl:text-center  py-4 `}>Upcoming Appointments</caption>
                         <thead>
                             <tr className="bg-[#e6e8e9] border-b-2 border-solid border-stone-400"> 
                                 <th className=" pl-[2rem] py-[1rem] 2xl:py-[2rem] lg:py-[1.2rem] ">Date</th>

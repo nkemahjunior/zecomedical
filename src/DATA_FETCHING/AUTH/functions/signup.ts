@@ -29,7 +29,7 @@ export async function signup(incomingData:signupData):Promise<signupReturn | und
 
         const dataToSend = {
 
-            name:       incomingData.firstName +"_"+incomingData.lastName,
+            name:       incomingData.firstName.replaceAll(" ","_") +"_"+incomingData.lastName.replaceAll(" ","_"),
             username:   incomingData.username,
             gender:     incomingData.gender,
             year:       Number(incomingData.dob.substring(0,4)),

@@ -52,17 +52,23 @@ export default function ChooseProfilePhoto() {
 
         const file = formData.get("incomingFile") as File
 
+        if(file.name.length < 1) return toast.error("please select a picture")
+       
+        
+
         //1000,000 bytes = 1mb
         if(file.size > 1000000){
             toast.error("picture size should be less than 1mb")
             return;
         }
 
-       const res = await mutation.mutateAsync(formData)
+        const res = await mutation.mutateAsync(formData)
+
+        
        
        if(res?.role.id == roles.PATIENT) router.replace("/patient/home")
        if(res?.role.id == roles.DOCTOR) router.replace("/doctor/home")
-       if(res?.role.id == roles.LAB) router.replace("/labTechnician/home")
+       if(res?.role.id == roles.LAB) router.replace("/lab")
                 
     }
 

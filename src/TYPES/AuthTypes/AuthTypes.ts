@@ -10,6 +10,13 @@ export enum roles{
     LAB //lab technician
 }
 
+export enum labDepartments{
+  MICROBIOLOGY = 1,
+  PARASITOLOGY,
+  IMMUNOLOGY,
+  BLOODBANK
+}
+
 export interface sessionType{
 
   errorMessage: null | string,
@@ -23,7 +30,34 @@ export interface sessionType{
   role: { id: Number , roles: string } | null,
   isAuthenticated: boolean ,
   verified: boolean | null
+  profilePhotoUrl:string
 
+}
+
+
+export interface labTechnicianType{
+  id: number,
+  userID: {
+      id: number
+      name: string
+      username: string
+      gender:string
+      dob: string
+      address: string
+      email: string
+      password: string
+      role: {
+          id: roles.LAB,
+          roles: string
+      },
+      isAuthenticated: boolean
+      verified:boolean
+      profilePhotoUrl: string
+  },
+  labDepartment: {
+      id: number
+      name: string
+  }
 }
 
 export interface signupReturn{

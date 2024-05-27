@@ -53,7 +53,7 @@ export default function Signup() {
         const res = mutation.mutateAsync(data)
         const resData = await res;
 
-       if(resData) router.push(`verifyEmail/${resData.email}`)
+       if(resData?.status == 201) router.push(`verifyEmail/${resData.email}`)
  
     }
 
@@ -122,7 +122,7 @@ export default function Signup() {
 
                                         {...register("firstName", { 
                                             required:true,
-                                            pattern:/^[A-Za-z0-9\s]+$/i,
+                                            pattern:/^[A-Za-z0-9" "\s]+$/i,
                                             max:35,
                                             min:1
                                         })}
@@ -156,7 +156,7 @@ export default function Signup() {
 
                                         {...register("lastName", { 
                                             required:true,
-                                            pattern:/^[A-Za-z0-9/s]+$/i,
+                                            pattern:/^[A-Za-z0-9" "/s]+$/i,
                                             max:35,
                                             min:1
                                         })}
