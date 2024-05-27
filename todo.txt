@@ -6,3 +6,14 @@ add loading states for the doctor/patient/lab set up account pages
 add profile photo
 
 do role authorization on each of the routes, coz a user can still access them by changing the address on the browser navigation
+
+
+from package.json : 
+    // "react": "^0.0.0-experimental-4c2e457c7c-20240522",
+    // "react-dom": "^0.0.0-experimental-4c2e457c7c-20240522",
+
+
+
+    from the lock file :
+            "react": "^0.0.0-experimental-4c2e457c7c-20240522",
+        "react-dom": "^0.0.0-experimental-4c2e457c7c-20240522",
