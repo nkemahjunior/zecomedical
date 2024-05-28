@@ -4,7 +4,7 @@ import { roleCheckDoctors } from "@/DATA_FETCHING/AUTH/functions/roleCheckDoctor
 
  
  
-export default async function Page({params}:{params:{patientID:string, patientName:string}}) {
+export default async function Page({params}:{params:{consultationID:string, patientID:string, patientName:string}}) {
 
     //console.log(params);
 
@@ -13,7 +13,7 @@ export default async function Page({params}:{params:{patientID:string, patientNa
 
     return (
         <>
-            <ConsultationParent patientID={params.patientID} patientName={params.patientName}/>
+            <ConsultationParent consultationID={params.consultationID} patientID={params.patientID} patientName={params.patientName}/>
         </>
     );
 }

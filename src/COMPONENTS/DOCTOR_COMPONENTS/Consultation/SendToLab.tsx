@@ -1,24 +1,32 @@
+'use client'
 import { useSendToLab } from "@/DATA_FETCHING/DOCTOR/hooks/useSendToLab";
 import "./consultation.css"
 
 import { textStylesH3 } from "@/COMPONENTS/GENERAL_STYLES/general";
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useContext, useEffect, useRef, useState } from "react";
 import { IoIosArrowDown, IoMdAddCircle } from "react-icons/io";
 import { TbMicroscope } from "react-icons/tb";
 import ButtonSpinner from "@/COMPONENTS/GLOBAL_COMPONENTS/ButtonSpinner";
-
-
-
+import { useSavePendingLabReq } from "@/DATA_FETCHING/DOCTOR/hooks/useLabResults";
+import toast from "react-hot-toast";
+import { DoctorContext, mainDoctorContextType } from "@/app/(DOCTOR)/doctor/DoctorProvider";
+import { checkLabResultsType } from "@/TYPES/Doctor/doctorTypes";
  
- 
-export default function SendToLab({patientID, patientName}:{patientID:string, patientName:string}) {
+export default function SendToLab({patientID, patientName}:{consultationID:string, patientID:string, patientName:string}) {
+
+    const {setPendingLabResults,pendingLabResults,pendingLabResultsCheck, setPendingLabResultsCheck} = useContext(DoctorContext) as mainDoctorContextType
 
     const [closeLab,setCloseLab] = useState(true)
     const labReqRef = useRef<HTMLDivElement>(null)
 
     const mutation = useSendToLab();
+    const mutatation2 = useSavePendingLabReq()
 
-    function sendToLabFN(e:FormEvent<HTMLFormElement>){
+
+
+
+
+    async function sendToLabFN(e:FormEvent<HTMLFormElement>){
         e.preventDefault()
 
         const formData = new FormData(e.currentTarget);
@@ -41,9 +49,31 @@ export default function SendToLab({patientID, patientName}:{patientID:string, pa
         }
 
 
+        const res = await mutation.mutateAsync(arrangedData)
+        
 
-        mutation.mutate(arrangedData)
+        if(res.status == 201){
+
+           const res2 = await mutatation2.mutateAsync({patientID:arrangedData.patientID, labName:arrangedData.labName,consultationID:res.consultationID})
+
+           if(res2?.status == 201) {
+                if(!pendingLabResultsCheck) setPendingLabResultsCheck(true)
+
+                const hold = [...pendingLabResults,res2]
+                setPendingLabResults(hold)
+                
+               res2.message && toast.success(res2.message)
+           }
+           else toast.error(res2?.message!)
+
+        }
+
+
     }
+
+
+
+
 
 
     function addNewLabRequestInput(){
@@ -170,7 +200,7 @@ export default function SendToLab({patientID, patientName}:{patientID:string, pa
                         className="p-2 bg-stone-50 border-2 border-solid border-[#00171F] rounded-lg text-black flex justify-center items-center xl:hover:scale-95"><span><IoMdAddCircle /></span>&nbsp;Add request
                     </button>
 
-                    <button className="py-2 px-20 bg-[#00171F] text-white rounded-lg shadow-lg xl:hover:scale-95">Send&nbsp;{mutation.isPending &&<ButtonSpinner/>}</button>
+                    <button className="py-2 px-20 bg-[#00171F] text-white rounded-lg shadow-lg xl:hover:scale-95">Send&nbsp;{mutation.isPending || mutatation2.isPending &&<ButtonSpinner/>}</button>
                 </div>
 
                 <input type="hidden" name="patientID" value={patientID} />

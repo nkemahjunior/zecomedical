@@ -1,4 +1,6 @@
+import { UUID } from "crypto"
 import { pageable, sort } from "../General/springBootPagination"
+import { requestResponse } from "../RequestTypes/RequestResponse"
 
 
 export interface createAppointmentType {
@@ -83,6 +85,10 @@ export interface createAppointmentType {
     
  }
 
+ export interface startConsultationResponseType extends requestResponse{
+    consultationID:number
+ }
+
 
  export interface changeAppointmentType{
     appointmentId:number
@@ -96,5 +102,74 @@ export interface sendToLabType{
  patientID:number
  patientName:string
  labTestRequest:string[]
+
+}
+
+export interface sendToLabResponse{
+    status:number
+    message:string
+    consultationID:string
+}
+
+
+
+export interface checkLabResultsType{
+
+    status?: number
+    message?:string
+    id:number
+    completed:boolean
+    waiting:boolean
+    patientID:number
+    doctorID:number
+    labName:string
+    dateTime:string
+    consultationID:string
+
+}
+
+export interface savePendingLabReqType{
+    labName:string
+    patientID:number
+    consultationID:string
+}
+
+
+export interface availableLabTestResults{
+    
+    
+    id: number,
+    consultation: {
+        diagnosisNotes: string | null,
+        comeForCheckup: string | null,
+        checkupDate: string | null,
+        sessionFinished: boolean
+        medicinePrescribed: string | null
+        labResultsBloodBank: string
+        labResultsMicrobiology: string
+        labResultsImmunology: string
+        labResultsParasitology: string
+        id: number,
+        timestamp: string
+    },
+
+    patientName: string
+    patientID: {
+        patientID: {
+            name: string
+        },
+        id: number
+    },
+    
+    labTestRequest: string
+    result: boolean
+    completed: boolean
+    creationTimestamp: string
+    notes: string
+    labDepartment: {
+        id: number,
+        name: string
+    }
+
 
 }

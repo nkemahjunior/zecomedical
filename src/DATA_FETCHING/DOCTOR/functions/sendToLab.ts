@@ -1,7 +1,6 @@
 import { BASE_URL } from "@/DATA_FETCHING/utills/constants";
 import { getCookie } from "@/DATA_FETCHING/utills/helpers";
-import { sendToLabType } from "@/TYPES/Doctor/doctorTypes";
-import { requestResponse } from "@/TYPES/RequestTypes/RequestResponse";
+import { sendToLabResponse, sendToLabType } from "@/TYPES/Doctor/doctorTypes";
 import toast from "react-hot-toast";
 
 
@@ -19,7 +18,7 @@ export async function sendToLab(data:sendToLabType){
         method:"POST"
     })
 
-    const resData:requestResponse = await res.json()
+    const resData:sendToLabResponse = await res.json()
 
     if(resData.status == 201) toast.success(resData.message)
     else toast.error(resData.message)

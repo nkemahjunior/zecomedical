@@ -1,37 +1,18 @@
-'use client'
-
-import "./consultation.css"
-import  { textStylesBody, textStylesH3, textStylesH4 } from "@/COMPONENTS/GENERAL_STYLES/general";
-import {  useRef, useState } from "react";
-import { GrSchedules } from "react-icons/gr";
-import { IoIosArrowDown, IoMdAddCircle } from "react-icons/io";
-import { RiCalendarScheduleLine } from "react-icons/ri";
-import { TbMicroscope } from "react-icons/tb";
+import { textStylesBody, textStylesH3 } from "@/COMPONENTS/GENERAL_STYLES/general";
+import { useState } from "react";
 import SendToLab from "./SendToLab";
-import { IoPauseOutline } from "react-icons/io5";
-import { useForm } from "react-hook-form";
+import { GrSchedules } from "react-icons/gr";
+import { IoIosArrowDown } from "react-icons/io";
 
-interface formInputTypes{
-    diagnosisNotes:string
-    prescribedDrugs:string
-}
  
  
-export default function StartConsultation({consultationID, patientID, patientName}:{consultationID:string, patientID:string, patientName:string}) {
-
-
-    const { register,formState:{errors}, handleSubmit, } = useForm<formInputTypes>()
+export default function ResumeConsultation({consultationID, patientID, patientName}:{consultationID:string, patientID:string, patientName:string}) {
 
     const [closeCheckup, setCloseCheckUp] = useState(true)
 
 
 
     const date = new Date()
-
-
-    function pauseConsultation(data:formInputTypes){
-        console.log(data);
-    }
 
     //xl:px-56 2xl:px-96
     return (
@@ -48,30 +29,19 @@ export default function StartConsultation({consultationID, patientID, patientNam
             `}
             >
 
-                <div className="w-full flex justify-end">
-                    <button className="px-8 py-4 bg-green-300 rounded-lg shadow-lg flex justify-center items-center mr-4 xl:hover:scale-95"
-                    onClick={handleSubmit(pauseConsultation)}
-                    >
-                        <span><IoPauseOutline /></span>&nbsp;Pause Consultation
-                    </button>
-                </div>
-
                 <SendToLab consultationID={consultationID} patientID={patientID} patientName={patientName}/>
 
 
 
 
                 <div className="border-0 border-solid border-lime-500 px-4 sm:px-16">
-                    <form className=" space-y-6 sm:space-y-8 lg:space-y-10 xl:space-y-16"
-                    
-                    >
+                    <form className=" space-y-6 sm:space-y-8 lg:space-y-10 xl:space-y-16">
 
                         <div>
                             <label htmlFor="diagnosisNotes">Diagnosis Notes</label>
                             <textarea required id="diagnosisNotes" cols={10} rows={20}
                                 className={` border-[1px] border-solid border-black rounded-lg h-[10rem] md:h-[10rem] xl:h-[15rem] 
                                 w-[100%]`}
-                                {...register("diagnosisNotes")}
                             />
                         </div>
 
@@ -81,7 +51,6 @@ export default function StartConsultation({consultationID, patientID, patientNam
                             <textarea  id="medecinePrescribed" cols={10} rows={20}
                                 className={` border-[1px] border-solid border-black rounded-lg h-[10rem] md:h-[10rem] w-[100%] 
                                 xl:h-[15rem]`}
-                                {...register("prescribedDrugs")}
                             />
                         </div>
 
@@ -228,25 +197,3 @@ export default function StartConsultation({consultationID, patientID, patientNam
         </div>
     );
 }
-
-
-
-/***
- *     private Long patientID;
-
-    private String diagnosisNotes;
-
-    private Boolean comeForCheckup;
-
-    private Integer checkupYear;
-
-    private Integer checkupMonth;
-
-    private Integer checkupDay;
-
-    private Integer checkupHour;
-
-    private Integer checkupMin;
-
-    private List<String> medicinePrescribed;
- */

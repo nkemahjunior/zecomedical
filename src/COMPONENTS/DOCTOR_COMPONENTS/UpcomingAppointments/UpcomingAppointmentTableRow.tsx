@@ -36,7 +36,7 @@ export default function UpcomingAppointmentTableRow({data}:propsType) {
 
         const res = await mutation.mutateAsync(patientID)
 
-        if(res?.status == 201) router.push(`/doctor/consultation/start/${patientID}/${patientName}`)
+        if(res?.status == 201) router.push(`/doctor/consultation/start/${res.consultationID}/${patientID}/${patientName}`)
     }
 
     

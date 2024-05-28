@@ -1,3 +1,4 @@
+
 import { textStylesBody } from "@/COMPONENTS/GENERAL_STYLES/general"
 import DoctorLogo from "./DoctorLogo";
 import { TbCalendarClock, TbClockQuestion } from "react-icons/tb";
@@ -7,10 +8,15 @@ import { IoMdNotificationsOutline } from "react-icons/io";
 import { FaRegUserCircle } from "react-icons/fa";
 import { BiLogOut } from "react-icons/bi";
 import { IoTodayOutline } from "react-icons/io5";
+import CheckLabResults from "./LabNotification";
+import LabNotification from "./LabNotification";
+import ConsultationLi from "./ConsultationLi";
 
  
  
 export default function DoctorSideNav() {
+
+    
     return (
         <div className={`border-0 border-solid border-yellow-700 h-full w-full 
         ${textStylesBody} text-white lg:text-black pl-4 pr-4 pb-4 2xl:pb-8 
@@ -21,6 +27,7 @@ export default function DoctorSideNav() {
             <div className=" h-full ">
                 
                 <ul className=" h-full  relative border-0 border-solid border-green-600 ">
+                
 
                     <DoctorLogo/>
                     <hr  className="hidden lg:block  border-stone-300 mt-8 mb-12"/>
@@ -50,7 +57,8 @@ export default function DoctorSideNav() {
 
                     <ul className={`mt-4 space-y-4 `}>
 
-                        <li className={` font-semibold `}>Consultations</li>
+                        {/* this ConsultationLi component checks if there are available lab request, when the application first loads */}
+                        <ConsultationLi/>
                         <ul className=" space-y-6 ">
 
                             <ul className="hover:bg-stone-200 transition-colors  py-1">
@@ -65,9 +73,8 @@ export default function DoctorSideNav() {
                                 <li className="ml-8 flex items-baseline gap-x-4"><span><PiArrowLineDown /></span>Resume consultations</li>
                             </ul>
 
-                            <ul className="hover:bg-stone-200 transition-colors  py-1">
-                                <li className="ml-8 flex items-baseline gap-x-4"><span><IoMdNotificationsOutline /></span>Lab Notifications</li>
-                            </ul>
+                            {/* this components checks if there are available completed lab results */}
+                            <LabNotification/>
 
                         </ul>
 
