@@ -1,12 +1,14 @@
 'use client'
 import { textStylesH3 } from "@/COMPONENTS/GENERAL_STYLES/general";
+import { availableLabTestResults } from "@/TYPES/Doctor/doctorTypes";
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { TbMicroscope } from "react-icons/tb";
+import LabResultsRow from "./LabResultsRow";
 
  
  
-export default function LabResults() {
+export default function LabResults({labTest}:{labTest:availableLabTestResults[]}) {
 
     const [closeLabResults,setCloseLabResults] = useState(true)
 
@@ -38,41 +40,21 @@ export default function LabResults() {
                             <th className="border-2 border-solid border-stone-400  ">Test</th>
                             <th className="border-2 border-solid border-stone-400 ">Lab</th>
                             <th className="border-2 border-solid border-stone-400 ">Results</th>
+                            <th className="border-2 border-solid border-stone-400 ">Notes</th>
                         </tr>
                     </thead>
 
                     <tbody >
                     
-                        <tr  className={` odd:bg-white even:bg-[#e6e8e9] `} >
 
-                            <td className="border-2 border-solid border-stone-400 ">Malaria</td>
-
-                            <td className="border-2 border-solid border-stone-400  capitalize whitespace-nowrap " > Lab Blood Bank</td>
-
-                            <td className="border-2 border-solid border-stone-400  uppercase">Positive</td>
-
-                        </tr>
-
-                        <tr  className={` odd:bg-white even:bg-[#e6e8e9] `} >
-
-                            <td className="border-2 border-solid border-stone-400 ">Malaria</td>
-
-                            <td className="border-2 border-solid border-stone-400  capitalize whitespace-nowrap " > Lab Blood Bank</td>
-
-                            <td className="border-2 border-solid border-stone-400  uppercase">Positive</td>
-
-                        </tr>
+                    {
+                        labTest.map((el,i) => (
+                            <LabResultsRow data={el} key={i}/>
+                        ))
+                    }
 
 
-                        <tr  className={` odd:bg-white even:bg-[#e6e8e9] `} >
 
-                            <td className="border-2 border-solid border-stone-400 ">Malaria</td>
-
-                            <td className="border-2 border-solid border-stone-400  capitalize whitespace-nowrap " > Lab Blood Bank</td>
-
-                            <td className="border-2 border-solid border-stone-400  uppercase">Positive</td>
-
-                        </tr>
                     
                     </tbody>
             </table>

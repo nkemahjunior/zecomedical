@@ -1,4 +1,5 @@
-import ResumeConsultation from "@/COMPONENTS/DOCTOR_COMPONENTS/Consultation/ResumeConsultation";
+
+import ResumeParent from "@/COMPONENTS/DOCTOR_COMPONENTS/Consultation/ResumeParent";
 import { roleCheckDoctors } from "@/DATA_FETCHING/AUTH/functions/roleCheckDoctors";
 
 
@@ -11,7 +12,7 @@ export default async function Page({params}:{params:{consultationID:string, pati
 
     return (
         <>
-            <ResumeConsultation consultationID = {params.consultationID} patientID={params.patientID} patientName={params.patientName}/>
+            <ResumeParent consultationID = {params.consultationID} patientID={params.patientID} patientName={params.patientName}/>
         </>
     );
 }

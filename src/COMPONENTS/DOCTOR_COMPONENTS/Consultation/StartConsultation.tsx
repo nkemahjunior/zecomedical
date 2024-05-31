@@ -2,7 +2,7 @@
 
 import "./consultation.css"
 import  { textStylesBody, textStylesH3, textStylesH4 } from "@/COMPONENTS/GENERAL_STYLES/general";
-import {  useRef, useState } from "react";
+import {  useContext, useRef, useState } from "react";
 import { GrSchedules } from "react-icons/gr";
 import { IoIosArrowDown, IoMdAddCircle } from "react-icons/io";
 import { RiCalendarScheduleLine } from "react-icons/ri";
@@ -10,6 +10,11 @@ import { TbMicroscope } from "react-icons/tb";
 import SendToLab from "./SendToLab";
 import { IoPauseOutline } from "react-icons/io5";
 import { useForm } from "react-hook-form";
+import { usePauseConsultation } from "@/DATA_FETCHING/DOCTOR/hooks/usePauseConsultation";
+import ButtonSpinner from "@/COMPONENTS/GLOBAL_COMPONENTS/ButtonSpinner";
+import { useRouter } from "next/navigation";
+import { DoctorContext, mainDoctorContextType } from "@/app/(DOCTOR)/doctor/DoctorProvider";
+import { resumeConsultationType } from "@/TYPES/Doctor/doctorTypes";
 
 interface formInputTypes{
     diagnosisNotes:string
@@ -20,18 +25,43 @@ interface formInputTypes{
 export default function StartConsultation({consultationID, patientID, patientName}:{consultationID:string, patientID:string, patientName:string}) {
 
 
+    const {pausedConsultations,setPausedConsultations} = useContext(DoctorContext) as mainDoctorContextType
+
     const { register,formState:{errors}, handleSubmit, } = useForm<formInputTypes>()
 
     const [closeCheckup, setCloseCheckUp] = useState(true)
+    const router = useRouter()
 
 
 
     const date = new Date()
 
+    const mutation = usePauseConsultation()
 
-    function pauseConsultation(data:formInputTypes){
-        console.log(data);
+
+    async function pauseConsultation(data:formInputTypes){
+
+        const diagnosisNotes = data.diagnosisNotes.length > 0 ? data.diagnosisNotes : null
+        const prescribedDrugs = data.prescribedDrugs.length > 0 ? data.prescribedDrugs : null
+
+        //console.log(consultationID , patientID);
+
+        const resData = await mutation.mutateAsync({consultationID:Number(consultationID), diagnosisNotes:diagnosisNotes, prescribedDrugs:prescribedDrugs})
+
+        if(resData?.status == 200){
+            const hold = [...pausedConsultations,resData]
+            setPausedConsultations(hold)
+
+           // router.push("/doctor/appointments/upcoming")
+        }
+        
+
+
     }
+
+
+
+
 
     //xl:px-56 2xl:px-96
     return (
@@ -52,7 +82,7 @@ export default function StartConsultation({consultationID, patientID, patientNam
                     <button className="px-8 py-4 bg-green-300 rounded-lg shadow-lg flex justify-center items-center mr-4 xl:hover:scale-95"
                     onClick={handleSubmit(pauseConsultation)}
                     >
-                        <span><IoPauseOutline /></span>&nbsp;Pause Consultation
+                        <span><IoPauseOutline /></span>&nbsp;Pause Consultation&nbsp;{mutation.isPending && <ButtonSpinner/>}
                     </button>
                 </div>
 
@@ -86,7 +116,7 @@ export default function StartConsultation({consultationID, patientID, patientNam
                         </div>
 
 
-                        <div className={` ${closeCheckup ? 'close' : 'open'} overflow-y-hidden p-4 lg:p-8
+                        <div className={` ${closeCheckup ? 'close' : 'open'} overflow-y-hidden p-4 lg:p-8 lg:py-10
                             border-[1px] border-solid border-black rounded-lg   space-y-6 sm:space-y-8 lg:space-y-10 xl:space-y-12
                             
                         `}

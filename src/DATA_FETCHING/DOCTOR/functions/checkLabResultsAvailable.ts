@@ -7,14 +7,13 @@ import { useContext } from "react";
 export async function checkLabResultsAvailable(pendingLabResults:checkLabResultsType[] | []){
   
 
-  let allPendingResults:availableLabTestResults[] = []
+
+   let pendingResult:availableLabTestResults[] = [] 
+   let allPendingResults:availableLabTestResults[] = []
 
 
     /* bb = bloodBank, im=immunology, mb = microbiology, ps = parasitology */
     for( const el of pendingLabResults){
-
-
-        
        
         if(el.labName == "bb"){
             
@@ -23,7 +22,7 @@ export async function checkLabResultsAvailable(pendingLabResults:checkLabResults
             })
 
             const resData:availableLabTestResults[] = await res.json()
-            allPendingResults.push(...resData)
+            pendingResult.push(...resData)
 
         }
 
@@ -35,7 +34,7 @@ export async function checkLabResultsAvailable(pendingLabResults:checkLabResults
             })
 
             const resData = await res.json()
-            allPendingResults.push(...resData)
+            pendingResult.push(...resData)
 
         }
 
@@ -47,7 +46,7 @@ export async function checkLabResultsAvailable(pendingLabResults:checkLabResults
             })
 
             const resData = await res.json()
-            allPendingResults.push(...resData)
+            pendingResult.push(...resData)
         }
 
 
@@ -59,7 +58,7 @@ export async function checkLabResultsAvailable(pendingLabResults:checkLabResults
             })
 
             const resData = await res.json()
-            allPendingResults.push(...resData)
+            pendingResult.push(...resData)
 
         }
 

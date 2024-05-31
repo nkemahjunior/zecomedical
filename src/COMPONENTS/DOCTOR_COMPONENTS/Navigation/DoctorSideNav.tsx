@@ -11,6 +11,8 @@ import { IoTodayOutline } from "react-icons/io5";
 import CheckLabResults from "./LabNotification";
 import LabNotification from "./LabNotification";
 import ConsultationLi from "./ConsultationLi";
+import ResumeConsultationsLi from "./ResumeConsultationsLi";
+import Link from "next/link";
 
  
  
@@ -37,17 +39,25 @@ export default function DoctorSideNav() {
                         <li className={` font-semibold `}>Appointments</li>
                         <ul className=" space-y-6 ">
 
-                            <ul className="hover:bg-stone-200 transition-colors  py-1">
-                                <li className="ml-8 flex items-baseline gap-x-4  "><span><TbClockQuestion /></span>Appointment Requests</li>
-                            </ul>
+                            <Link href={"/doctor/appointments/requests"} className="block">
+                                <ul className="hover:bg-stone-200 transition-colors  py-1">
+                                    <li className="ml-8 flex items-baseline gap-x-4  "><span><TbClockQuestion /></span>Appointment Requests</li>
+                                </ul>
+                            </Link>
 
-                            <ul className="hover:bg-stone-200 transition-colors  py-1">
-                                <li className="ml-8 flex items-baseline gap-x-4"><span><TbCalendarClock /></span>Upcoming Appointments</li>
-                            </ul>
+                            <Link href={"/doctor/appointments/upcoming"}  className="block">
 
-                            <ul className="hover:bg-stone-200 transition-colors  py-1">
-                                <li className="ml-8 flex items-baseline gap-x-4"> <span><LiaPlusSquareSolid /></span>Create Appointment</li>
-                            </ul>
+                                <ul className="hover:bg-stone-200 transition-colors  py-1">
+                                    <li className="ml-8 flex items-baseline gap-x-4"><span><TbCalendarClock /></span>Upcoming Appointments</li>
+                                </ul>
+                            </Link>
+
+                            <Link href={"/doctor/appointments/create"} className="block">
+
+                                <ul className="hover:bg-stone-200 transition-colors  py-1">
+                                    <li className="ml-8 flex items-baseline gap-x-4"> <span><LiaPlusSquareSolid /></span>Create Appointment</li>
+                                </ul>
+                            </Link>
 
                         </ul>
 
@@ -69,9 +79,7 @@ export default function DoctorSideNav() {
                                 <li className="ml-8 flex items-baseline gap-x-4"><span><PiArrowLineUp /></span>Ongoing consultation</li>
                             </ul>
 
-                            <ul className="hover:bg-stone-200 transition-colors  py-1">
-                                <li className="ml-8 flex items-baseline gap-x-4"><span><PiArrowLineDown /></span>Resume consultations</li>
-                            </ul>
+                            <ResumeConsultationsLi/>
 
                             {/* this components checks if there are available completed lab results */}
                             <LabNotification/>

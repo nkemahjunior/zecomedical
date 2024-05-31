@@ -57,10 +57,10 @@ export default function SendToLab({patientID, patientName}:{consultationID:strin
            const res2 = await mutatation2.mutateAsync({patientID:arrangedData.patientID, labName:arrangedData.labName,consultationID:res.consultationID})
 
            if(res2?.status == 201) {
-                if(!pendingLabResultsCheck) setPendingLabResultsCheck(true)
+                
 
                 const hold = [...pendingLabResults,res2]
-                setPendingLabResults(hold)
+                setPendingLabResults(hold) //add lab request to the list of pending results for that doctor
                 
                res2.message && toast.success(res2.message)
            }
@@ -138,7 +138,7 @@ export default function SendToLab({patientID, patientName}:{consultationID:strin
     return (
         <div className="border-0 border-solid border-yellow-500 px-4 sm:px-16 ">
 
-        <div className={`space-y-8 lg:space-y-10  p-4 lg:p-8 
+        <div className={`space-y-8 lg:space-y-10  p-4 lg:p-8  lg:py-10
             border-[1px] border-solid border-black rounded-lg 
             ${closeLab ? "close overflow-hidden" : "open overflow-y-auto"}
             `}>

@@ -3,7 +3,7 @@ import ResumeConsultation from "./ResumeConsultation";
 
  
  
-export default function ResumeParent({patientID, patientName}:{patientID:string, patientName:string}) {
+export default function ResumeParent({consultationID, patientID, patientName}:{consultationID:string, patientID:string, patientName:string}) {
 
 
     return (
@@ -11,7 +11,7 @@ export default function ResumeParent({patientID, patientName}:{patientID:string,
 
             <div className="border-0 border-green-800 border-solid  row-start-2 xl:row-start-1">
 
-             <ResumeConsultation patientID={patientID} patientName={patientName}/>
+             <ResumeConsultation consultationID={consultationID} patientID={patientID} patientName={patientName}/>
             </div>
 
 

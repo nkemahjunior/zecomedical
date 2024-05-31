@@ -65,8 +65,9 @@ export async function updatePendingLabRequestStatus(consultationID:string){
 
         const resData:requestResponse = await res.json()
 
-        if(resData.status == 200) toast.success(resData.message)
-        else toast.error(resData.message)
+        //i will handle success in the component using this fetch
+        if(resData.status !== 200) toast.error(resData.message)
+        
 
         return resData;
 

@@ -95,6 +95,35 @@ export interface createAppointmentType {
     status:string
 }
 
+export interface pauseConsultationType{
+    consultationID:number,
+    diagnosisNotes:string | null
+    prescribedDrugs:string | null
+}
+
+
+export interface pauseConsultationResponseType{
+    status:number
+    message:string
+    id:number
+    patientID:number
+    patientName:string
+    diagnosisNotes:string
+    labResultsBloodBank:string
+ 
+    labResultsImmunology:string
+ 
+    labResultsMicrobiology:string
+ 
+    labResultsParasitology:string
+ 
+    // private Boolean sessionFinished;
+ 
+    medicinePrescribed:string
+ 
+    // private String status;
+}
+
 
 export interface sendToLabType{
 
@@ -135,24 +164,54 @@ export interface savePendingLabReqType{
 }
 
 
+export interface consultationType{
+
+    diagnosisNotes: string | null,
+    comeForCheckup: string | null,
+    checkupDate: string | null,
+    sessionFinished: boolean
+    medicinePrescribed: string | null
+    labResultsBloodBank: string | null 
+    labResultsMicrobiology: string | null 
+    labResultsImmunology: string | null 
+    labResultsParasitology: string | null 
+    id: number,
+    timestamp: string
+
+}
+
+
+
+
+export interface resumeConsultationType extends consultationType  {
+
+    status:number
+    message:string
+    patientID:number,
+    patientName:string
+}
+
+
+
+export interface finishConsultationType{
+    patientID:number
+    diagnosisNotes:string
+    comeForCheckup:boolean
+    checkupYear:number | null
+    checkupMonth:number | null
+    checkupDay:number | null
+    checkupHour:number | null
+    checkupMin:number | null
+    medicinePrescribed:string
+}
+
+
+
 export interface availableLabTestResults{
     
     
     id: number,
-    consultation: {
-        diagnosisNotes: string | null,
-        comeForCheckup: string | null,
-        checkupDate: string | null,
-        sessionFinished: boolean
-        medicinePrescribed: string | null
-        labResultsBloodBank: string
-        labResultsMicrobiology: string
-        labResultsImmunology: string
-        labResultsParasitology: string
-        id: number,
-        timestamp: string
-    },
-
+    consultation:consultationType
     patientName: string
     patientID: {
         patientID: {
