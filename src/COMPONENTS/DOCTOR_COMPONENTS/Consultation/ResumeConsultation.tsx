@@ -14,6 +14,7 @@ import { useUpdatePendingLabRequestStatus } from "@/DATA_FETCHING/DOCTOR/hooks/u
 import { labDepts } from "@/TYPES/Lab/laboratories";
 import toast from "react-hot-toast";
 import ButtonSpinner from "@/COMPONENTS/GLOBAL_COMPONENTS/ButtonSpinner";
+import { useRouter } from "next/navigation";
 
 
 
@@ -33,6 +34,8 @@ export interface formInputTypes{
 
  
 export default function ResumeConsultation({consultationID, patientID, patientName}:{consultationID:string, patientID:string, patientName:string}) {
+
+    const router = useRouter()
 
     const {completedResults, setCompletedLabResults,pausedConsultations,setPausedConsultations,pendingLabResults, setPendingLabResults} = useContext(DoctorContext) as mainDoctorContextType
     const resultsForThisConsultation = completedResults.filter(el => el.consultation.id == Number(consultationID))
@@ -101,6 +104,7 @@ export default function ResumeConsultation({consultationID, patientID, patientNa
             const hold3 = pendingLabResults.filter(el => el.patientID !== Number(patientID))
             setPendingLabResults(hold3)
             toast.success(res.message)
+            router.push("/doctor/appointments/upcoming")
         }
     }
      

@@ -12,7 +12,7 @@ export function useCheckLabResultsAvailableFN(){
     const query = useQuery({
         queryKey:["checkAvlLabRslts",pendingLabResults],
         queryFn: () => checkLabResultsAvailable(pendingLabResults),
-        //refetchInterval:1000
+        refetchInterval:600000 // refetch every 10 minutes
     })
 
     return query;

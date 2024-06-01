@@ -13,7 +13,7 @@ export default function LabResults({labTest}:{labTest:availableLabTestResults[]}
     const [closeLabResults,setCloseLabResults] = useState(true)
 
     return (
-        <div className="w-full  border-2 border-solid border-red-600 px-4 sm:px-16">
+        <div className="w-full  border-0 border-solid border-red-600 px-4 sm:px-16">
 
         <div className={`space-y-8 lg:space-y-10  p-4 lg:p-8 
             border-[1px] border-solid border-black rounded-lg 

@@ -13,6 +13,7 @@ import LabNotification from "./LabNotification";
 import ConsultationLi from "./ConsultationLi";
 import ResumeConsultationsLi from "./ResumeConsultationsLi";
 import Link from "next/link";
+import LogoutLi from "./LogoutLi";
 
  
  
@@ -98,10 +99,8 @@ export default function DoctorSideNav() {
                             <ul className="hover:bg-stone-200 transition-colors  py-1 w-full">
                                 <li className="ml-8 flex items-baseline gap-x-4"><span><FaRegUserCircle /></span>Update profile</li>
                             </ul>
-                            
-                            <ul className="hover:bg-stone-200 transition-colors  py-1">
-                                <li className="ml-8 flex items-baseline gap-x-4"><span><BiLogOut /></span>Log out</li>
-                            </ul>
+
+                            <LogoutLi/>
                         </ul>
                     </ul>
 

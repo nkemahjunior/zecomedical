@@ -1,9 +1,9 @@
 "use client"
 
 import { doctorContextTypes, DoctorModalContext} from "@/app/(DOCTOR)/doctor/DoctorModalProvider";
-import { useContext } from "react";
+import { Fragment, MouseEvent, useContext, useEffect, useRef } from "react";
 import { textStylesBody } from "../../GENERAL_STYLES/general";
-import TableModalDetails from "./TableModalDetails";
+
 
 
 /**
@@ -18,8 +18,27 @@ import TableModalDetails from "./TableModalDetails";
  
 export default function DoctorModalParent() {
 
+    //const ref = useRef<HTMLDivElement>(null)
+
     
-    const {open,setOpen,content,setContent} = useContext(DoctorModalContext) as doctorContextTypes
+    const {open,content} = useContext(DoctorModalContext) as doctorContextTypes
+
+
+    // const handleClickOutside = (e:any) => {
+    //     if (ref.current && !ref.current.contains(e.target)) {
+    //       //setShowModal(false);
+    //       console.log("yes");
+    //     }else console.log("no");
+    // };
+
+
+    // useEffect(() => {
+
+    //     document.addEventListener('click', handleClickOutside);
+
+    //     // Cleanup function to remove listener on unmount
+    //     return () => document.removeEventListener('click', handleClickOutside);
+    // },[])
 
     return (
         <div className= {` ${open ? '' : 'hidden'}   border-2 border-solid border-black  absolute top-0 bg-[rgb(0,0,0,0.3)]
@@ -27,10 +46,11 @@ export default function DoctorModalParent() {
         >
             
 
-        {
-            content
-        }          
-
+               
+            { 
+                content
+            }
+                   
             
         </div>
     );

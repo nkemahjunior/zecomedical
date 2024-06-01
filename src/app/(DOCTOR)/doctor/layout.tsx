@@ -42,7 +42,7 @@ export default function PatientLayout({children,}: Readonly<{ children: React.Re
 
 
                 <div className="h-full w-full overflow-y-scroll  bg-stone-100 
-                border-4 border-solid border-red-600 relative"> 
+                border-0 border-solid border-red-600 relative"> 
                   
                     {children} 
                   

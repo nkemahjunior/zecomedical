@@ -14,8 +14,7 @@ export default function LabNotification() {
 
     const {setCompletedLabResults,completedResults, pendingLabResults} = useContext(DoctorContext) as mainDoctorContextType
  
-    const query = useCheckLabResultsAvailableFN()
-
+    const query = useCheckLabResultsAvailableFN() // runs every 10mins
     
 
     /**
@@ -24,6 +23,8 @@ export default function LabNotification() {
      */
     useEffect( () => {
         if(!query.isLoading && query.data && query.data.length > 0){
+
+
 
             const hold = [/*...completedResults,*/ ...query.data]
             setCompletedLabResults(hold)

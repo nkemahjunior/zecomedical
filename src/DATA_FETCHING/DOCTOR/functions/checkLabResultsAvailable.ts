@@ -9,7 +9,7 @@ export async function checkLabResultsAvailable(pendingLabResults:checkLabResults
 
 
    let pendingResult:availableLabTestResults[] = [] 
-   let allPendingResults:availableLabTestResults[] = []
+
 
 
     /* bb = bloodBank, im=immunology, mb = microbiology, ps = parasitology */
@@ -23,6 +23,7 @@ export async function checkLabResultsAvailable(pendingLabResults:checkLabResults
 
             const resData:availableLabTestResults[] = await res.json()
             pendingResult.push(...resData)
+
 
         }
 
@@ -64,7 +65,6 @@ export async function checkLabResultsAvailable(pendingLabResults:checkLabResults
 
     }
 
-
-    return allPendingResults;
+    return pendingResult;
 
 }

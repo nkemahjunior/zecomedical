@@ -7,6 +7,8 @@ import TableModalDetails from "../Modal/TableModalDetails";
 import { useStartConsultation } from "@/DATA_FETCHING/DOCTOR/hooks/useStartConsultation";
 import { useRouter } from "next/navigation";
 import ButtonSpinner from "@/COMPONENTS/GLOBAL_COMPONENTS/ButtonSpinner";
+import { useDeleteUpcomingRequest } from "@/DATA_FETCHING/DOCTOR/hooks/useDeleteUpcomingRequest";
+import toast from "react-hot-toast";
 
 interface propsType{
     data:appointmentReqType,
@@ -30,13 +32,24 @@ export default function UpcomingAppointmentTableRow({data}:propsType) {
     }
 
     const mutation = useStartConsultation()
+    const mutationDelete = useDeleteUpcomingRequest()
 
     async function startConsultationH(e:MouseEvent<HTMLButtonElement>,patientID:number, patientName:string){
         e.stopPropagation()
 
         const res = await mutation.mutateAsync(patientID)
 
-        if(res?.status == 201) router.push(`/doctor/consultation/start/${res.consultationID}/${patientID}/${patientName}`)
+        if(res?.status == 201){
+          const res2 =  await mutationDelete.mutateAsync(data.id)
+
+          if ( res2 &&  res2.status == 200){
+
+            toast.success(res.message)
+            router.push(`/doctor/consultation/start/${res.consultationID}/${patientID}/${patientName}`)
+
+          } 
+        }
+
     }
 
     

@@ -5,8 +5,6 @@ import  { textStylesBody, textStylesH3, textStylesH4 } from "@/COMPONENTS/GENERA
 import {  useContext, useRef, useState } from "react";
 import { GrSchedules } from "react-icons/gr";
 import { IoIosArrowDown, IoMdAddCircle } from "react-icons/io";
-import { RiCalendarScheduleLine } from "react-icons/ri";
-import { TbMicroscope } from "react-icons/tb";
 import SendToLab from "./SendToLab";
 import { IoPauseOutline } from "react-icons/io5";
 import { useForm } from "react-hook-form";
@@ -14,12 +12,22 @@ import { usePauseConsultation } from "@/DATA_FETCHING/DOCTOR/hooks/usePauseConsu
 import ButtonSpinner from "@/COMPONENTS/GLOBAL_COMPONENTS/ButtonSpinner";
 import { useRouter } from "next/navigation";
 import { DoctorContext, mainDoctorContextType } from "@/app/(DOCTOR)/doctor/DoctorProvider";
-import { resumeConsultationType } from "@/TYPES/Doctor/doctorTypes";
+import { finishConsultationType, resumeConsultationType } from "@/TYPES/Doctor/doctorTypes";
+import { useFinishConsultation } from "@/DATA_FETCHING/DOCTOR/hooks/useFinishConsultation";
+import toast from "react-hot-toast";
 
-interface formInputTypes{
+export interface formInputTypes{
     diagnosisNotes:string
-    prescribedDrugs:string
+    medecinePrescribed:string
+    checkupDay:string
+    checkupMonth:string
+    checkupYear:string
+    comeForCheckup:boolean
+    checkupHour:string
+    checkupMin:string
+    period:string
 }
+
  
  
 export default function StartConsultation({consultationID, patientID, patientName}:{consultationID:string, patientID:string, patientName:string}) {
@@ -37,12 +45,13 @@ export default function StartConsultation({consultationID, patientID, patientNam
     const date = new Date()
 
     const mutation = usePauseConsultation()
+    const mutationFinish = useFinishConsultation()
 
 
     async function pauseConsultation(data:formInputTypes){
 
         const diagnosisNotes = data.diagnosisNotes.length > 0 ? data.diagnosisNotes : null
-        const prescribedDrugs = data.prescribedDrugs.length > 0 ? data.prescribedDrugs : null
+        const prescribedDrugs = data.medecinePrescribed.length > 0 ? data.medecinePrescribed : null
 
         //console.log(consultationID , patientID);
 
@@ -52,12 +61,50 @@ export default function StartConsultation({consultationID, patientID, patientNam
             const hold = [...pausedConsultations,resData]
             setPausedConsultations(hold)
 
-           // router.push("/doctor/appointments/upcoming")
+            router.push("/doctor/appointments/upcoming")
         }
         
 
 
     }
+
+
+
+
+
+    async function finishConsultation(data:formInputTypes){
+        //console.log(data);
+
+        const arrangedData:finishConsultationType = {
+            patientID:  Number(patientID),
+            diagnosisNotes:  data.diagnosisNotes,
+            comeForCheckup:  data.comeForCheckup,
+            checkupYear:  data.checkupYear.length > 0 && Number(data.checkupYear) || null,
+            checkupMonth:  data.checkupMonth.length > 0 && Number(data.checkupMonth) || null,
+            checkupDay:   data.checkupDay.length > 0 && Number(data.checkupDay) || null,
+            checkupHour:   data.checkupHour.length > 0 && Number(data.checkupHour) || null,
+            checkupMin:   data.checkupMin.length > 0 && Number(data.checkupMin)|| null,
+            medicinePrescribed:  data.medecinePrescribed
+        }
+
+        if(arrangedData.comeForCheckup && arrangedData.checkupHour && arrangedData.checkupMin){
+
+            
+            if(data.period == "am" && arrangedData.checkupHour < 0 || data.period == "am" && arrangedData.checkupHour > 12)
+                return toast.error("correct time period to pm or change time")
+
+        
+                
+            if(data.period == "pm" && arrangedData.checkupHour < 13 || data.period == "pm" && arrangedData.checkupHour > 23) 
+                return toast.error("correct time period to am or change time")
+        }
+
+
+        const res = await mutationFinish.mutateAsync(arrangedData)
+
+        if(res?.status == 200) router.push("/doctor/appointments/upcoming")
+    }
+     
 
 
 
@@ -93,8 +140,10 @@ export default function StartConsultation({consultationID, patientID, patientNam
 
                 <div className="border-0 border-solid border-lime-500 px-4 sm:px-16">
                     <form className=" space-y-6 sm:space-y-8 lg:space-y-10 xl:space-y-16"
+                    onSubmit={handleSubmit(finishConsultation)}
                     
                     >
+
 
                         <div>
                             <label htmlFor="diagnosisNotes">Diagnosis Notes</label>
@@ -111,7 +160,7 @@ export default function StartConsultation({consultationID, patientID, patientNam
                             <textarea  id="medecinePrescribed" cols={10} rows={20}
                                 className={` border-[1px] border-solid border-black rounded-lg h-[10rem] md:h-[10rem] w-[100%] 
                                 xl:h-[15rem]`}
-                                {...register("prescribedDrugs")}
+                                {...register("medecinePrescribed")}
                             />
                         </div>
 
@@ -139,7 +188,9 @@ export default function StartConsultation({consultationID, patientID, patientNam
                             <div>
                                 <label htmlFor="checkup">Patient should come for checkup&nbsp;</label>
                                 <input type="checkbox" id="checkup" 
-                                className={` border-[1px] border-solid border-black rounded-lg accent-black`}/>
+                                className={` border-[1px] border-solid border-black rounded-lg accent-black`}
+                                {...register("comeForCheckup")}
+                                />
                             </div>
 
 
@@ -150,36 +201,40 @@ export default function StartConsultation({consultationID, patientID, patientNam
                                 <div className="flex gap-x-4 w-full border-0 border-solid border-red-700">
 
                                     <div className="flex items-center  gap-x-2 w-[30%] border-0 border-solid border-red-700">
-                                        <label htmlFor="endDay">DD&nbsp;:</label>
-                                        <input type="number" id="endDay" 
-                                            required aria-label="enter end day"
-                                            placeholder="18" defaultValue={3}
+                                        <label htmlFor="day">DD&nbsp;:</label>
+                                        <input type="number" id="day" 
+                                            aria-label="enter day"
+                                            placeholder="00" 
                                             min={1} max={31}
                                         className={` border-[1px] border-solid border-black rounded-lg h-[3.2rem] md:h-[3.8rem] w-[100%]`}
+                                        {...register("checkupDay")}
                                     
                                         />
                                     </div>
 
 
                                     <div className="flex items-center gap-x-2 w-[30%] border-0 border-solid border-red-700">
-                                        <label htmlFor="endMonth">MM&nbsp;:</label>
-                                        <input type="number" id="endMonth" 
-                                            required aria-label="enter end month"
-                                            placeholder="07" defaultValue={2}
+                                        <label htmlFor="month">MM&nbsp;:</label>
+                                        <input type="number" id="month" 
+                                            aria-label="enter month"
+                                            placeholder="00" 
                                             min={1} max={12}
                                         className={` border-[1px] border-solid border-black rounded-lg h-[3.2rem] md:h-[3.8rem] w-[100%]`}
+                                        {...register("checkupMonth")}
                                         
                                         />
                                     </div>
 
 
+
                                     <div className="flex items-center gap-x-2 w-[30%] border-0 border-solid border-red-700">
-                                        <label htmlFor="endYear">YY&nbsp;:</label>
-                                        <input type="number" id="endYear" 
-                                            required aria-label="enter end year"
+                                        <label htmlFor="year">YY&nbsp;:</label>
+                                        <input type="number" id="year" 
+                                            aria-label="enter  year"
                                             placeholder={`${date.getFullYear()}`} defaultValue={date.getFullYear()}
                                             min={date.getFullYear()} max={2040}
                                         className={` border-[1px] border-solid border-black rounded-lg h-[3.2rem] md:h-[3.8rem] w-[100%]`}
+                                        {...register("checkupYear")}
                                     
                                         />
                                     </div>
@@ -196,13 +251,14 @@ export default function StartConsultation({consultationID, patientID, patientNam
 
                                     <div className="flex items-center  gap-x-4 w-[30%] border-0 border-solid border-red-700">
 
-                                        <label htmlFor="closeHour">H&nbsp;:</label>
-                                        <input type="number" id="closeHour" 
-                                            required aria-label="enter closing hour(0 to 23)"
-                                            placeholder="15" defaultValue={15}
+                                        <label htmlFor="hour">H&nbsp;:</label>
+                                        <input type="number" id="hour" 
+                                            aria-label="enter hour"
+                                            placeholder="00" 
                                             min={0} max={23}
                                         className={` border-[1px] border-solid border-black rounded-lg h-[3.2rem] md:h-[3.8rem] w-[100%]`}
-                                    
+                                        {...register("checkupHour")}
+
                                         />
 
                                     </div>
@@ -210,12 +266,13 @@ export default function StartConsultation({consultationID, patientID, patientNam
 
                                     <div className="flex items-center gap-x-4 w-[30%] border-0 border-solid border-red-700">
 
-                                        <label htmlFor="closeMin">M&nbsp;:</label>
-                                        <input type="number" id="closeMin"
-                                            required aria-label="enter closing minute" 
-                                            placeholder="45"
-                                            min={0} max={59} defaultValue={45}
+                                        <label htmlFor="min">M&nbsp;:</label>
+                                        <input type="number" id="min"
+                                            aria-label="enter minute" 
+                                            placeholder="00"
+                                            min={0} max={51} 
                                         className={` border-[1px] border-solid border-black rounded-lg h-[3.2rem] md:h-[3.8rem] w-[100%]`}
+                                        {...register("checkupMin")}
                                     
                                         />
 
@@ -226,6 +283,7 @@ export default function StartConsultation({consultationID, patientID, patientNam
                                         <select  id=""  
                                         className={` border-[1px] border-solid border-black rounded-lg h-[3.2rem] md:h-[3.8rem] w-[100%]
                                         `}
+                                        {...register("period")}
                                     
                                         >
                                             <option value="am">AM</option>
@@ -243,9 +301,9 @@ export default function StartConsultation({consultationID, patientID, patientNam
 
                         <div className="flex justify-center items-center ">
 
-                            <button className={`mt-6 py-5 px-10 xl:px-20 xl:py-7 bg-[#00171F] text-white rounded-lg shadow-xl xl:hover:scale-95`}>
-                                Finish Consultation
-                            </button>
+                        <button className={`mt-6 py-5 px-10 xl:px-20 xl:py-7 bg-[#00171F] text-white rounded-lg shadow-xl xl:hover:scale-95`}>
+                            Finish Consultation&nbsp;{mutation.isPending && <ButtonSpinner/> }
+                        </button>
 
                         </div>
 

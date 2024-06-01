@@ -12,6 +12,8 @@ export default function LabNavBar() {
 
     const mutation = useSignout()
    
+
+    //will navigate to the login page on success
     function signout(){
         mutation.mutate()
     }

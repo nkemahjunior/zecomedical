@@ -14,7 +14,7 @@ export default function ConsultationParent({consultationID, patientID, patientNa
             </div>
 
 
-           <PatientInfo/>
+           <PatientInfo patientID={patientID}/>
 
 
         </div>

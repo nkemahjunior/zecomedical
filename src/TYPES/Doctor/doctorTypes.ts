@@ -232,3 +232,15 @@ export interface availableLabTestResults{
 
 
 }
+
+
+export interface patientInfoType{
+    id:number
+    weight:number
+    bloodGroup:string
+    bloodPressure:string
+    name:string
+    gender:string
+    dob:string
+    profilePhotoUrl:string
+}

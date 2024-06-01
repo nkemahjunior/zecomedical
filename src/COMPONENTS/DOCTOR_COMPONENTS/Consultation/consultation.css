@@ -56,7 +56,7 @@
 
 
 .close {
-    height: 36rem;
+    height: 38rem;
     animation-name: myfilter;
     animation-duration: 0.3s;
     animation-delay: 0.1s;
@@ -69,7 +69,7 @@
     
     from{
         
-        height:36rem;
+        height:38rem;
     }
 
     to{
@@ -81,7 +81,7 @@
 
 
 .open {
-    height: 36rem;
+    height: 38rem;
     animation-name: myfilter1;
     animation-duration: 0.3s;
     animation-delay: 0.1s;
@@ -96,7 +96,7 @@
     }
 
     to{
-        height:36rem;
+        height:38rem;
     }
 }
     

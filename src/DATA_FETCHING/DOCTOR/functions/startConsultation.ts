@@ -20,8 +20,9 @@ export async function startConsultation(patientID:number){
 
         const resData:startConsultationResponseType = await res.json()
 
-        if(resData.status == 201) toast.success(resData.message)
-        else  toast.error(resData.message)
+        // i will handle success in the method calling this function
+        if(resData.status !== 201) toast.error(resData.message)
+      
         
 
         return resData;
