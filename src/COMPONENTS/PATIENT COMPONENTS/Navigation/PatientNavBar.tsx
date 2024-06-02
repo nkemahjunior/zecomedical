@@ -1,10 +1,14 @@
 'use client'
 import { useEffect, useRef, useState } from "react";
-import { navHeight_2xl, navHeight_phones, navHeight_sm, textStylesBody } from "../GENERAL_STYLES/general";
-import Logo from "../HOMEPAGE/Logo";
+import {  textStylesBody } from "../../GENERAL_STYLES/general";
+
 import PatientLogo from "./PatientLogo";
-import "../HOMEPAGE/Hamburger.css";
+import "../../HOMEPAGE/Hamburger.css";
 import Image from "next/image";
+import PatientMedicalHistoryLi from "./PatientMedicalHistoryLi";
+import Link from "next/link";
+import LogoutLi from "./LogoutLi";
+import { useGetPatientInfo } from "@/DATA_FETCHING/PATIENT/hooks/useGetPatientInfo";
 
  
  
@@ -15,6 +19,9 @@ export default function PatientNavBar() {
 
     const refToggle = useRef<HTMLUListElement>(null);
     const refToggle2 = useRef<HTMLUListElement>(null);
+
+
+    const query = useGetPatientInfo()
 
     //useEffect for phones Navigation menu
     useEffect(()=>{
@@ -100,7 +107,7 @@ export default function PatientNavBar() {
                          transition-colors delay-75
                         ${show ? '1024Down:translate-x-[-0%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[0.5s]':' 1024Down:translate-x-[110%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[1s]'} 
 
-                             `}>Medical history</li>
+                             `}><PatientMedicalHistoryLi/></li>
 
                         <li  className={` xl:hover:text-[#ccd1d2]
                          transition-colors delay-75
@@ -115,7 +122,12 @@ export default function PatientNavBar() {
                          transition-colors delay-75
                         ${show ? '1024Down:translate-x-[-0%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[0.7s]':' 1024Down:translate-x-[110%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[1s]'} 
 
-                        `}>Available Doctors</li>
+                        `}> <Link
+                        href={"/patient/availableDoctors?p=0"}
+                        className="block w-full"
+                        >Available Doctors</Link></li>
+
+                        
 
 
                         <li  className={` xl:hidden
@@ -126,15 +138,20 @@ export default function PatientNavBar() {
                         
 
                         <li  className={` xl:hidden
-                         transition-colors delay-75
+                         transition-colors delay-75 cursor-pointer
                         ${show ? '1024Down:translate-x-[-0%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[0.9s]':' 1024Down:translate-x-[110%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[1s]'} 
 
-                        `}>Logout</li>
+                        `}><LogoutLi/></li>
 
                         
 
                        
                     </ul>
+
+
+
+
+
 
                     {/**this links are available on xl and above */}
                     <ul className={`hidden xl:block  xl:absolute xl:right-0  top-[5.4rem]   w-fit
@@ -146,25 +163,29 @@ export default function PatientNavBar() {
                     > 
                         <li className={` ${show2 ? 'translate-x-[-0%] transition duration-[0.6s] delay-[0.5s]':' translate-x-[110%] transition duration-[0.7s] delay-[1s]'} 
                         `}> 
-                            Available Doctors
+                            <Link
+                            href={"/patient/availableDoctors?p=0"}
+                            className="block w-full"
+                            >Available Doctors</Link>
                         </li>
+
                         <li className={` ${show2 ? 'translate-x-[-0%] transition duration-[0.6s] delay-[0.6s]':' translate-x-[110%] transition duration-[0.7s] delay-[1s]'} 
                         `}> 
                             Settings
                         </li>
 
-                        <li className={` ${show2 ? 'translate-x-[-0%] transition duration-[0.6s] delay-[0.7s]':' translate-x-[110%] transition duration-[0.7s] delay-[1s]'} 
+                        <li className={`cursor-pointer ${show2 ? 'translate-x-[-0%] transition duration-[0.6s] delay-[0.7s]':' translate-x-[110%] transition duration-[0.7s] delay-[1s]'} 
                         `}>
-                            Logout
+                            <LogoutLi/>
                         </li>
                     </ul>
 
 
                     {/**round menu, xl downwards */}
                     <div className="flex xl:hidden items-center   " onClick={ showNav}>
-                        <button className=" border-solid border-2 border-[#4d5d62] h-[2.5rem] w-[2.5rem] relative rounded-[50%] overflow-hidden ">
+                        <button className=" border-solid border-2 border-[#4d5d62] h-[2.5rem] w-[2.5rem] relative rounded-[50%] overflow-hidden re">
 
-                            <Image className="block"  src={"/dp.jpeg"} alt="profile picture" fill={true} quality={100} priority={true}  style={{ maxHeight:"100%", maxWidth:"100%"}}/>                            
+                            <Image className="block"  src={ query?.data?.profilePhotoUrl || "/defaultProfile.jpg"}  alt="profile picture" fill={true} quality={100} priority={true}  style={{ maxHeight:"100%", maxWidth:"100%"}}/>                            
                         </button>
                     </div>
 
@@ -173,7 +194,7 @@ export default function PatientNavBar() {
                     <div className="hidden xl:flex  items-center   " onClick={ showNav2}>
                         <button className=" border-solid border-2 border-[#4d5d62] h-[3rem] w-[3rem] overflow-hidden relative rounded-[50%] ">
 
-                            <Image className="block"  src={"/dp.jpeg"} alt="profile picture" fill={true} quality={100} priority={true}  style={{ maxHeight:"100%", maxWidth:"100%"}}/>
+                            <Image className="block"  src={ query?.data?.profilePhotoUrl || "/defaultProfile.jpg"} alt="profile picture" fill={true} quality={100} priority={true}  style={{ maxHeight:"100%", maxWidth:"100%"}}/>
                         </button>
                     </div>
 

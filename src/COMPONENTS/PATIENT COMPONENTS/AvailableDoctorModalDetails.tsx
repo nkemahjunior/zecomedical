@@ -64,8 +64,8 @@ export default function AvailableDoctorModalDetails({appointmentData}:{appointme
                                 {...register("reason")}
                             >
 
-                                <option value="CHECKUP">check up</option>
-                                <option value="CONSULTATION">consultation</option>
+                                <option value="checkup">check up</option>
+                                <option value="consultation">consultation</option>
 
                             </select>
 

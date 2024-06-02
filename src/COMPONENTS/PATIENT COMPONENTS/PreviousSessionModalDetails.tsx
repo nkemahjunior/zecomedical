@@ -1,9 +1,17 @@
  
 import Image from "next/image";
 import { textStylesBody, textStylesH3 } from "../GENERAL_STYLES/general";
+import { medicalHistoryResponseType } from "@/TYPES/PatientAndDoctor/patientAndDoctorTypes";
+import { extractDate } from "@/helpers/extractDate";
+import MedicalHistoryLab from "../DOCTOR_COMPONENTS/Consultation/MedicalHistoryLab";
 
  
-export default function PreviousSessionModalDetails() {
+export default function PreviousSessionModalDetails({data}:{data:medicalHistoryResponseType | undefined}) {
+
+
+    const {year,month,day,hour,min} = extractDate(data?.timestamp!)
+    const period = Number(hour) >= 0 && Number(hour) <= 12 ? "AM":"PM"
+
     return (
         <>
 
@@ -11,7 +19,7 @@ export default function PreviousSessionModalDetails() {
 
 
 
-                <div className="w-full  border-0 border-solid border-yellow-700 px-8 lg:px-24 xl:px-[8rem] 2xl:[16rem]">
+                <div className={`${textStylesBody} w-full  border-0 border-solid border-yellow-700 px-8 lg:px-24 xl:px-[8rem] 2xl:[16rem]`}>
 
 
 
@@ -19,40 +27,66 @@ export default function PreviousSessionModalDetails() {
 
                     <div className="space-y-6 sm:grid sm:grid-cols-[45fr,55fr] sm:gap-x-6 lg:gap-x-14">
 
-                        <div className="rounded-lg h-[23rem] sm:h-[70%] w-[100%]  
+                        <div className="rounded-lg h-[23rem] sm:h-[27rem] lg:h-[35rem] w-[100%]  
                             border-0 border-solid border-red-600 relative overflow-hidden">  
 
-                            <Image className="block"  src={"/doctor.jpg"} alt="The doctor's picture" fill={true} quality={100} priority={true}  style={{ maxHeight:"100%", maxWidth:"100%"}}/>
+                            <Image className="block"  src={data?.doctorID.uuid.profilePhotoUrl || "/defaultProfile.jpg"} alt="The doctor's picture" fill={true} quality={100} priority={true}  style={{ maxHeight:"100%", maxWidth:"100%"}}/>
                         </div> 
 
 
 
                         <div>
 
-                            <dl className={` ${textStylesBody} font-semibold `}>
+                            <dl className={` ${textStylesBody}  `}>
+
+
+
+                                <dt className=" font-semibold mt-4">date:</dt>
+                                <dd className=" ">{day}-{month}-{year}{/*, {hour}:{min} {period}*/}</dd>
                                 
-                                <dt className=" font-medium mt-4">Doctor:</dt>
-                                <dd className=" text-[#33454c]">Dr. Zino Zelensikino</dd>
+                                <dt className=" font-semibold mt-4">Doctor:</dt>
+                                <dd className="  capitalize">Dr. {data?.doctorID.uuid.name}</dd>
 
-                                <dt className=" font-medium mt-4">Specialty:</dt>
-                                <dd className=" text-[#33454c]">Dentist</dd>
-
-                                <dt className=" font-medium mt-4">date:</dt>
-                                <dd className=" text-[#33454c]">April 02, 2024</dd>
-
-                                <dt className=" font-medium mt-4 ">Reason:</dt>
-                                <dd className=" text-[#33454c]">Consultation</dd>
+                                <dt className=" font-semibold mt-4">Specialty:</dt>
+                                <dd className="  capitalize">{data?.doctorID.speciality}</dd>
                                 
-                                <dt className=" font-medium mt-4  ">Your complain:</dt>
-                                <dd className="border-0 border-solid border-red-600 text-[#33454c] max-w-[27rem] ">Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Omnis, voluptates!  ipsum dolor Lorem ipsum, d.</dd>
+                                <dt className=" font-semibold mt-4  ">Diagnosis Notes:</dt>
+                                <dd className="border-0 border-solid border-red-600  max-w-[27rem] ">{data?.diagnosisNotes}</dd>
 
-                                <dt className=" font-medium mt-4 ">rende_vouz:</dt>
-                                <dd className=" text-[#33454c]">true</dd>
-
-                                <dt className=" font-medium mt-4">Status:</dt>
-                                <dd className=" text-[#33454c]">Pending</dd>
+                                <dt className=" font-semibold mt-4 ">Prescribed Drugs:</dt>
+                                <dd className=" ">{data?.medicinePrescribed}</dd>
 
                             </dl>
+
+                            <div>
+
+                                <h1 className={`${textStylesH3} text-black mt-4`}> Lab Results</h1>
+
+
+                                {
+                                    data?.labResultsBloodBank && data?.labResultsBloodBank.map((el,i) => <MedicalHistoryLab data={el} key={el.id} />)
+                                }
+
+
+
+                                {
+                                    data?.labResultsImmunology && data?.labResultsImmunology.map((el,i) => <MedicalHistoryLab data={el} key={el.id} />)
+                                }
+
+
+
+                                {
+                                    data?.labResultsMicrobiology && data?.labResultsMicrobiology.map((el,i) => <MedicalHistoryLab data={el} key={el.id} />)
+                                }
+
+
+
+                                {
+                                    data?.labResultsParasitology && data?.labResultsParasitology.map((el,i) => <MedicalHistoryLab data={el} key={el.id} />)
+                                }
+
+                            </div>
+
                         </div>
 
 

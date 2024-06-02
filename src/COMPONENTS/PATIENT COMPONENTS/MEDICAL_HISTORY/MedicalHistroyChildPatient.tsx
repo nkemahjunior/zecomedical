@@ -1,13 +1,11 @@
-'use client'
 
-import { medicalHistoryResponseType } from "@/TYPES/PatientAndDoctor/patientAndDoctorTypes";
-import MedicalHistoryLab from "./MedicalHistoryLab";
-import { textStylesH3, textStylesH4 } from "@/COMPONENTS/GENERAL_STYLES/general";
+import MedicalHistoryLab from "@/COMPONENTS/DOCTOR_COMPONENTS/Consultation/MedicalHistoryLab";
+import { textStylesH3 } from "@/COMPONENTS/GENERAL_STYLES/general";
 import { extractDate } from "@/helpers/extractDate";
+import { medicalHistoryResponseType } from "@/TYPES/PatientAndDoctor/patientAndDoctorTypes";
 
- 
- 
-export default function MedicalHistoryChild({data}:{data:medicalHistoryResponseType}) {
+
+export default function MedicalHistoryChildPatient({data}:{data:medicalHistoryResponseType}) {
 
 
 

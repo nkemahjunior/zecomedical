@@ -1,8 +1,13 @@
+'use client'
+
 import Image from "next/image";
 import { textStylesBody, textStylesH3 } from "../GENERAL_STYLES/general";
 import { useContext } from "react";
 import { contextTypes, ModalContext } from "@/app/ModalProvider";
 import UpcomingAppointmentsModalDetails from "./UpcomingAppointmentsModalDetails";
+import { useGetPatientUpcomingAppointments } from "@/DATA_FETCHING/PATIENT/hooks/useGetPatientUpcomingAppointments";
+import LoadingPatientUpcoming from "./loading/LoadingPatientUpcoming";
+import { extractDate } from "@/helpers/extractDate";
 
  interface parameters{
     openModal:(arg:boolean) => void
@@ -16,11 +21,21 @@ export default function UpcomingAppointments() {
 
     const {setShowModal,setModalContent} = useContext(ModalContext) as contextTypes
 
+    const query = useGetPatientUpcomingAppointments()
+    
+    if(query.isLoading  )  return <LoadingPatientUpcoming/>
+    const appointment = query.data?.at(0)
+
+    
     function openModalContent(){
         setShowModal(true)
         //openModal(true)
-        setModalContent(<UpcomingAppointmentsModalDetails/>)
+        setModalContent(<UpcomingAppointmentsModalDetails data={appointment}/>)
     }
+
+    const {year,month,day,hour,min} = extractDate(appointment?.dateTime!)
+    const period = Number(hour) >= 0 && Number(hour) <= 12 ? "AM":"PM"
+    const docName = appointment?.doctorID.uuid.name
 
     return (
         <>
@@ -36,16 +51,22 @@ export default function UpcomingAppointments() {
                          2xl:w-[25rem]
                         border-0 border-solid border-red-600 relative overflow-hidden">  
 
-                            <Image className="block"  src={"/doctor.jpg"} alt="The doctor's picture" fill={true} quality={100} priority={true}  style={{ maxHeight:"100%", maxWidth:"100%"}}/>
+                            <Image className="block"  src={appointment?.doctorID.uuid.profilePhotoUrl || "/defaultProfile.jpg"} alt="The doctor's picture" fill={true} quality={100} priority={true}  style={{ maxHeight:"100%", maxWidth:"100%"}}/>
                         </div> 
 
                         <div className=" ">
 
                             <div className=" space-y-[0.2rem] lg:space-y-[0.7rem] xl:space-y-[1.4rem] ">
-                                <p className= { `${textStylesBody} text-white` }>April 02, 2024</p>
-                                <p className= { `${textStylesBody} text-white` }>My stomach aches</p>
-                                <p className= { `${textStylesBody} text-white` }>Dr.Zekoinas Petrovic</p>
-                                <p className= { `${textStylesBody} text-white` }>Pending</p>
+                                <p className= { `${textStylesBody} text-white` }>{day}-{month}-{year}, {hour}:{min} {period}</p>
+                                
+                                <p className= { `${textStylesBody} text-white` }>
+                                    {appointment?.complain_notes && appointment.complain_notes.length > 21 ? `${appointment.complain_notes.slice(0,21)}...`: `${appointment?.complain_notes}`}
+                                </p>
+
+                                <p className= { `${textStylesBody} text-white capitalize` }>Dr.{docName && docName.length > 21 ? `${docName.slice(0,18) }...` :      docName}
+                                </p>
+
+                                <p className= { `${textStylesBody} text-white` }>{appointment?.status}</p>
                             </div>
 
                             <button 

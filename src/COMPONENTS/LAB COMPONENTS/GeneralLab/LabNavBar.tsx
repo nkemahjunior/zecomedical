@@ -1,6 +1,6 @@
 'use client'
 import { textStylesBody } from "@/COMPONENTS/GENERAL_STYLES/general";
-import PatientLogo from "@/COMPONENTS/PATIENT COMPONENTS/PatientLogo";
+import PatientLogo from "@/COMPONENTS/PATIENT COMPONENTS/Navigation/PatientLogo";
 import LabLogo from "./LabLogo";
 import { useSignout } from "@/DATA_FETCHING/AUTH/hooks/useSignout";
 import ButtonSpinner from "@/COMPONENTS/GLOBAL_COMPONENTS/ButtonSpinner";

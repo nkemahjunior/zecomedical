@@ -52,7 +52,7 @@ export default function AvailableDoctor({colorStyles,data}:parameters) {
 
                 <div className="h-[7rem] w-[7rem] lg:w-[9.8rem] lg:h-[9.8rem] xl:w-[11.4rem] xl:h-[11.4rem] rounded-[50%]  border-0 border-solid border-red-600 relative overflow-hidden">  
 
-                    <Image className="block"  src={"/doctor.jpg"} alt="logo" fill={true} quality={100} priority={true}  style={{ maxHeight:"100%", maxWidth:"100%"}}/>
+                    <Image className="block"  src={data.doctorID.uuid.profilePhotoUrl || "/defaultProfile.jpg"} alt="logo" fill={true} quality={100} priority={true}  style={{ maxHeight:"100%", maxWidth:"100%"}}/>
                 
                 </div>
             </div>

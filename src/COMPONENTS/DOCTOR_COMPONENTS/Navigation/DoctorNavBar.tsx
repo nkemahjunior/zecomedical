@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
-import PatientLogo from "../../PATIENT COMPONENTS/PatientLogo";
+import PatientLogo from "../../PATIENT COMPONENTS/Navigation/PatientLogo";
 import { textStylesBody } from "../../GENERAL_STYLES/general";
 import Image from "next/image";
 import DoctorSideNav from "./DoctorSideNav";
