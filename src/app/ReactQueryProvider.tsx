@@ -12,6 +12,7 @@ export default function ReactQueryProvider({children}:Readonly<{ children: React
             queries: {
                 staleTime :120000, // 2 mins
                 retry:3,
+                
                 //retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),THIS IS DEFAULT
             },
         },

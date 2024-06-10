@@ -12,7 +12,8 @@ export async function getUser():Promise<sessionType | undefined>{
     try {
         const res = await fetch(`${BASE_URL}/auth/session`,{
 
-            next:{revalidate:600}, //cache for 10mins, the cache wont work in middlewares, only normal functions like Page
+            //next:{revalidate:600}, //cache for 10mins, the cache wont work in middlewares, only normal functions like Page
+            cache: 'no-store',
             credentials:'include',
             headers:{
                 //"X-XSRF-TOKEN":csrf,

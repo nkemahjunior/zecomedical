@@ -7,6 +7,7 @@ import { roles } from "@/TYPES/AuthTypes/AuthTypes"
 
 export async function roleCheckPatient(){
     const user = await getUser()
+   // console.log("PATIERNTTTTTTTTTTTTTTTTTTT");
     //console.log(user);
 
     

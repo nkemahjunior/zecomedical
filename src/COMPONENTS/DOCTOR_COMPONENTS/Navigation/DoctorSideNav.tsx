@@ -1,4 +1,5 @@
 
+'use client'
 import { textStylesBody } from "@/COMPONENTS/GENERAL_STYLES/general"
 import DoctorLogo from "./DoctorLogo";
 import { TbCalendarClock, TbClockQuestion } from "react-icons/tb";
@@ -14,10 +15,13 @@ import ConsultationLi from "./ConsultationLi";
 import ResumeConsultationsLi from "./ResumeConsultationsLi";
 import Link from "next/link";
 import LogoutLi from "./LogoutLi";
+import { usePathname } from "next/navigation";
 
  
  
 export default function DoctorSideNav() {
+
+    const pathname = usePathname()
 
     
     return (
@@ -41,21 +45,21 @@ export default function DoctorSideNav() {
                         <ul className=" space-y-6 ">
 
                             <Link href={"/doctor/appointments/requests"} className="block">
-                                <ul className="hover:bg-stone-200 transition-colors  py-1">
+                                <ul className={` ${pathname == "/doctor/appointments/requests" ? "bg-stone-200":""}    hover:bg-stone-300 transition-colors  py-1`}>
                                     <li className="ml-8 flex items-baseline gap-x-4  "><span><TbClockQuestion /></span>Appointment Requests</li>
                                 </ul>
                             </Link>
 
                             <Link href={"/doctor/appointments/upcoming"}  className="block">
 
-                                <ul className="hover:bg-stone-200 transition-colors  py-1">
+                                <ul className={` ${pathname == "/doctor/appointments/upcoming" ? "bg-stone-200":""}    hover:bg-stone-300 transition-colors  py-1`}>
                                     <li className="ml-8 flex items-baseline gap-x-4"><span><TbCalendarClock /></span>Upcoming Appointments</li>
                                 </ul>
                             </Link>
 
                             <Link href={"/doctor/appointments/create"} className="block">
 
-                                <ul className="hover:bg-stone-200 transition-colors  py-1">
+                                <ul className={` ${pathname == "/doctor/appointments/create" ? "bg-stone-200":""}    hover:bg-stone-300 transition-colors  py-1`}>
                                     <li className="ml-8 flex items-baseline gap-x-4"> <span><LiaPlusSquareSolid /></span>Create Appointment</li>
                                 </ul>
                             </Link>
@@ -72,13 +76,13 @@ export default function DoctorSideNav() {
                         <ConsultationLi/>
                         <ul className=" space-y-6 ">
 
-                            <ul className="hover:bg-stone-200 transition-colors  py-1">
+                            {/* <ul className={` ${pathname == "" ? "bg-stone-200":""}    hover:bg-stone-300 transition-colors  py-1`}>
                                 <li className="ml-8 flex items-baseline gap-x-4"><span><IoTodayOutline /></span>Appointments for Today</li>
                             </ul>
 
-                            <ul className="hover:bg-stone-200 transition-colors  py-1">
+                            <ul className={` ${pathname == "" ? "bg-stone-200":""}    hover:bg-stone-300 transition-colors  py-1`}>
                                 <li className="ml-8 flex items-baseline gap-x-4"><span><PiArrowLineUp /></span>Ongoing consultation</li>
-                            </ul>
+                            </ul> */}
 
                             <ResumeConsultationsLi/>
 
@@ -96,7 +100,7 @@ export default function DoctorSideNav() {
                         <li className={` font-semibold `}>Account Settings</li>
                         <ul className=" space-y-6 ">
 
-                            <ul className="hover:bg-stone-200 transition-colors  py-1 w-full">
+                            <ul className={` ${pathname == "" ? "bg-stone-200":""}    hover:bg-stone-300 transition-colors  py-1 w-full`}>
                                 <li className="ml-8 flex items-baseline gap-x-4"><span><FaRegUserCircle /></span>Update profile</li>
                             </ul>
 

@@ -23,6 +23,7 @@ export default function PatientNavBar() {
 
     const query = useGetPatientInfo()
 
+
     //useEffect for phones Navigation menu
     useEffect(()=>{
         function toggleNavContainer(e:any){

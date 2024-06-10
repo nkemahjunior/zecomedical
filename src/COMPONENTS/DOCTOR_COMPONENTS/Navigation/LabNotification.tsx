@@ -6,11 +6,13 @@ import { useContext, useEffect } from "react";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import AnimationPing from "./AnimationPing";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
  
  
 export default function LabNotification() {
 
+    const pathname = usePathname()
 
     const {setCompletedLabResults,completedResults, pendingLabResults} = useContext(DoctorContext) as mainDoctorContextType
  
@@ -35,7 +37,7 @@ export default function LabNotification() {
 
     return (
         <Link href={"/doctor/consultation/notifications"} className="block">
-            <ul className="hover:bg-stone-200 transition-colors  py-1">
+            <ul className={` hover:bg-stone-300 transition-colors  py-1 ${pathname == "/doctor/consultation/notifications" ? "bg-stone-200":""}`}>
                 <li className="ml-8 flex items-baseline gap-x-4">
                     <span className="relative h-fit inline-block">
 

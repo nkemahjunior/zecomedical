@@ -22,7 +22,7 @@ export default function Modal() {
     return (
         <>
             <div className={` ${showModal ? 'fixed':'hidden'}
-            border-4 border-solid border-red-700 h-[100dvh] w-screen  
+            border-0 border-solid border-red-700 h-[100dvh] w-screen  
               top-[4rem] sm:top-[6rem] z-10 backdrop-blur-sm flex justify-center items-center`}
             >
 

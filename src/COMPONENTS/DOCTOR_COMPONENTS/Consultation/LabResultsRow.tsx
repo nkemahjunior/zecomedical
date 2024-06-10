@@ -30,7 +30,7 @@ export default function LabResultsRow({data}:{data:availableLabTestResults}) {
             <td className="border-2 border-solid border-stone-400  uppercase">{data?.result === true ? 'Positive' : 'Negative'}</td>
 
             <td className="border-2 border-solid border-stone-400 capitalize">{
-                data.notes !== null && `${data.notes.length > 5 && data.notes.slice(0,5)}...` || data.notes
+                 data.notes
             }</td>
 
         </tr>

@@ -122,7 +122,7 @@ export default function Signup() {
 
                                         {...register("firstName", { 
                                             required:true,
-                                            pattern:/^[A-Za-z0-9" "\s]+$/i,
+                                           // //pattern:/^[A-Za-z0-9" "\s]+$/i,
                                             max:35,
                                             min:1
                                         })}
@@ -156,7 +156,7 @@ export default function Signup() {
 
                                         {...register("lastName", { 
                                             required:true,
-                                            pattern:/^[A-Za-z0-9" "/s]+$/i,
+                                           // pattern:/^[A-Za-z0-9" "/s]+$/i,
                                             max:35,
                                             min:1
                                         })}
@@ -191,7 +191,7 @@ export default function Signup() {
 
                                     {...register("username", { 
                                         required:true,
-                                        pattern:/^[^<>]+$/i,
+                                        //pattern:/^[^<>]+$/i,
                                         max:35,
                                         min:1
                                     })}
@@ -272,7 +272,7 @@ export default function Signup() {
 
                                     {...register("address", { 
                                         required:true,
-                                        pattern:/^[A-Za-z0-9/s]+$/i,
+                                        //pattern:/^[A-Za-z0-9/s]+$/i,
                                         max:35,
                                         min:1
                                     })}
@@ -303,7 +303,7 @@ export default function Signup() {
 
                                     {...register("password", { 
                                         required:true,
-                                        pattern:/^[^<>]+$/i,
+                                        //pattern:/^[^<>]+$/i,
                                         minLength:8
                                     })}
                                     aria-invalid={errors.password ? "true" : "false"}

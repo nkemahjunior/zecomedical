@@ -1,7 +1,9 @@
+'use client'
 import { LabContextTypes, LabModalContext } from "@/app/(LAB)/lab/LabModalProvider"
 import ButtonSpinner from "@/COMPONENTS/GLOBAL_COMPONENTS/ButtonSpinner"
 import { usePostLabBloodBankTestResults } from "@/DATA_FETCHING/LAB/hooks/usePostLabTestResults"
 import { labRequestType, testResults } from "@/TYPES/Lab/laboratories"
+import { useRouter } from "next/navigation"
 import { useContext } from "react"
 import { useForm } from "react-hook-form"
 import { IoClose } from "react-icons/io5"
@@ -19,6 +21,8 @@ interface formInputTypes{
  
  
 export default function LabTableModalDetailsBloodBank({el}:{el:labRequestType}) {
+
+    const router = useRouter()
     //table rows of accepted and upcoming requests open this modal
     const {open,setOpen,content,setContent} = useContext(LabModalContext) as LabContextTypes
 
@@ -42,12 +46,14 @@ export default function LabTableModalDetailsBloodBank({el}:{el:labRequestType}) 
             completed : data.completed == "true" ? true : false
         }
 
-        console.log(arrangeData);
+        //console.log(arrangeData);
 
         const res = await mutation.mutateAsync(arrangeData)
 
         if(res?.status == 201 ){
             //await wait10(5000)
+            router.refresh()
+            
             setContent(null)
             setOpen(false)
         }

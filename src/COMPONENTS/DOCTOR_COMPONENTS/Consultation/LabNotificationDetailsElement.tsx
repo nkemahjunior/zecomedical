@@ -33,8 +33,8 @@ export default function LabNotificationDetailElement({data}:{data:availableLabTe
         if(data.labDepartment.id == labDepts.PARASITOLOGY) resData = await mutation.mutateAsync(data.consultation.labResultsParasitology!)
 
         if(resData?.status == 200){
-            const hold = completedResults.filter( el => el.id !== data.id)
-            setCompletedLabResults(hold) // doctor has seen and interacted with the notification, so remove it from the list of completed results
+            //const hold = completedResults.filter( el => el.id !== data.id)
+            //setCompletedLabResults(hold) // doctor has seen and interacted with the notification, so remove it from the list of completed results
             toast.success(resData.message)
 
             

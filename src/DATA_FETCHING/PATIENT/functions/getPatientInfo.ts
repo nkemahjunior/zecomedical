@@ -11,6 +11,7 @@ export async function getPatientInfo(){
 
         const resData:patientInfoType = await res.json()
 
+        
         return resData;
 
         

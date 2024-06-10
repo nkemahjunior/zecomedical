@@ -5,7 +5,9 @@ import { redirect } from "next/navigation"
 
 export async function roleCheckSetUpAccount(){
     const user = await getUser()
+    console.log("SET UPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
+    console.log(user);
 
     //page is only for Verified users who dont yet have a role of either: patient, doctor or labTech
-    if( !user || user?.role?.id !== roles.VERIFIED) redirect("/auth/signin")
+    //if( !user || user?.role?.id !== roles.VERIFIED) redirect("/auth/signin")
 }

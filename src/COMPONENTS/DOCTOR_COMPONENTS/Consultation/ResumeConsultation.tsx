@@ -131,7 +131,7 @@ export default function ResumeConsultation({consultationID, patientID, patientNa
                 <SendToLab consultationID={consultationID} patientID={patientID} patientName={patientName}/>
 
                 {
-                    resultsForThisConsultation?.length > 1 && <LabResults labTest={resultsForThisConsultation}/>
+                    resultsForThisConsultation?.length >= 1 && <LabResults labTest={resultsForThisConsultation}/>
                 }
 
                 

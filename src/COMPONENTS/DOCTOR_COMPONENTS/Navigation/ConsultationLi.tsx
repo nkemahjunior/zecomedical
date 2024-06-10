@@ -3,11 +3,14 @@
 import { DoctorContext, mainDoctorContextType } from "@/app/(DOCTOR)/doctor/DoctorProvider"
 import ButtonSpinner from "@/COMPONENTS/GLOBAL_COMPONENTS/ButtonSpinner"
 import { useGetPendingLabResults } from "@/DATA_FETCHING/DOCTOR/hooks/useLabResults"
+import { usePathname } from "next/navigation"
 import { useContext, useEffect } from "react"
 
  
 export default function ConsultationLi() {
 
+
+    const pathname = usePathname()
 
     const { setPendingLabResults } = useContext(DoctorContext) as mainDoctorContextType
 
@@ -33,6 +36,6 @@ export default function ConsultationLi() {
 
 
     return (
-        <li className={` font-semibold `}>Consultations&nbsp;{query.isLoading && <ButtonSpinner/>}</li>
+        <li className={` font-semibold  `}>Consultations&nbsp;{query.isLoading && <ButtonSpinner/>}</li>
     );
 }
