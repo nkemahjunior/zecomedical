@@ -6,6 +6,7 @@ import PreviousSession from "./PreviousSession";
 import { textStylesBody, textStylesH3 } from "../GENERAL_STYLES/general";
 import { useGetAvailableDoctors } from "@/DATA_FETCHING/PATIENT/hooks/useGetAvailableDoctors";
 import DoctorsAvailableHome from "./DoctorsAvailableHome";
+import SendLabRequestPatient from "./SendLabRequestPatient";
 
 
 const colorStyles = {
@@ -35,8 +36,10 @@ export default function PatientHome() {
                 {/**grid 1 */}
                 <div className=" border-0 border-solid border-pink-600 ">
 
+
+                    <SendLabRequestPatient/>
                     <UpcomingAppointments/>
-                    <PreviousSession/>
+                    
 
                 </div>
 

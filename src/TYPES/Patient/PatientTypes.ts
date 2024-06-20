@@ -99,3 +99,39 @@ export interface patientUpcomingAppointments{
     dateTime: string
 
 }
+
+
+export interface labResultsPatient{
+
+    completed:boolean
+    creationTimestamp:string
+    doctor_id:{
+        doctorID: number
+        speciality:string
+    }
+
+    uuid:{
+        gender: string, 
+        profilePhotoUrl: string, 
+        name: string
+    }
+
+    id:number
+    labDepartment:{
+        id:number
+        name:string
+    }
+
+    labTestRequest:string
+    notes:string
+    patientID:{
+        id:number
+    patientID:{
+        name: string
+    }
+
+    }
+    patientName:string
+    result:boolean
+
+}

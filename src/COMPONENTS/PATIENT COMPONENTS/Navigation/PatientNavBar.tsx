@@ -1,14 +1,18 @@
 'use client'
-import { useEffect, useRef, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useRef, useState } from "react";
 import {  textStylesBody } from "../../GENERAL_STYLES/general";
 
 import PatientLogo from "./PatientLogo";
 import "../../HOMEPAGE/Hamburger.css";
 import Image from "next/image";
-import PatientMedicalHistoryLi from "./PatientMedicalHistoryLi";
+
 import Link from "next/link";
 import LogoutLi from "./LogoutLi";
 import { useGetPatientInfo } from "@/DATA_FETCHING/PATIENT/hooks/useGetPatientInfo";
+import LabResultsPatientLi from "./LabResultsPatientLi";
+import { BiSearch } from "react-icons/bi";
+import toast from "react-hot-toast";
+import { SearchContext, searchContextTypes } from "@/app/(PATIENT)/SearchBarProvider";
 
  
  
@@ -19,6 +23,20 @@ export default function PatientNavBar() {
 
     const refToggle = useRef<HTMLUListElement>(null);
     const refToggle2 = useRef<HTMLUListElement>(null);
+
+
+    const searchRef = useRef<HTMLInputElement>(null)
+
+
+    const {inputValue,setSearchValue, setInputValue} = useContext(SearchContext) as searchContextTypes
+
+
+    function search(){
+        if(inputValue.length < 3) return toast.error("search value should contain morethan three characters")
+
+        if(searchRef.current)
+            setSearchValue(searchRef.current?.value)
+    }
 
 
     const query = useGetPatientInfo()
@@ -79,7 +97,7 @@ export default function PatientNavBar() {
     return (
         <>
             {/**NAVIGATION BAR */}
-             {/**if you eventually change the height of this nav bar, dont forget to visit the doctor layout file */}
+             {/**if you eventually change the height of this nav bar, dont forget to visit the patient layout file */}
                 <nav className={`fixed top-0 w-screen z-[100] h-[5.4rem]   
                 sm:h-[6rem] 2xl:h-fit  max-w-[100%]  transition-colors duration-75 
                 border-solid border-0 border-blue-900 bg-[#00171F]
@@ -90,7 +108,32 @@ export default function PatientNavBar() {
                 <div className={` flex justify-between h-full w-full   pt-1   relative   `   }>
 
                     <PatientLogo/>
-            
+
+
+
+                    {/* search bar */}
+                    <div  className={`${textStylesBody} border-green-600 border-solid border-0`}>
+
+                        <div className="border-red-600 border-solid border-0  flex gap-x-2">
+                            
+                            <input type="text" placeholder="search doctor by speciality..."
+                                className="border-2 border-black border-solid h-[4rem] w-[24rem] sm:w-[40rem] md:w-[50rem] xl:w-[60rem] rounded-xl "
+                                ref={searchRef}
+                                onChange={(e:ChangeEvent<HTMLInputElement>) => setInputValue(e.target.value)}
+                                defaultValue={inputValue}
+                            />
+
+                            <div>
+                                <button 
+                                 onClick={search}
+                                className="h-[4rem] py-2 px-4 bg-white text-[#00171F] flex justify-center items-center rounded-lg xl:hover:scale-95">Search <span className="ml-2"><BiSearch/></span> </button>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+        
 
                     {/* text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl w-[13rem] md:w-[15rem] lg:w-[18rem] xl:w-[65rem]*/}
                     <ul className={` space-y-[1rem] xl:space-y-0  w-fit px-6 lg:px-8 py-8 xl:py-0 rounded-md shadow-xl
@@ -104,17 +147,25 @@ export default function PatientNavBar() {
                         {/* <div className=" flex justify-end xl:hidden"><button onClick={hideNav}>X</button></div> */}
 
                         {/**this two links are visible on all screens*/}
+
+
+
+
+
+
+
+
                         <li  className={` xl:hover:text-[#ccd1d2] 
                          transition-colors delay-75
                         ${show ? '1024Down:translate-x-[-0%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[0.5s]':' 1024Down:translate-x-[110%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[1s]'} 
 
-                             `}><PatientMedicalHistoryLi/></li>
+                             `}><LabResultsPatientLi/></li>
 
-                        <li  className={` xl:hover:text-[#ccd1d2]
+                        {/* <li  className={` xl:hover:text-[#ccd1d2]
                          transition-colors delay-75
                         ${show ? '1024Down:translate-x-[-0%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[0.6s]':' 1024Down:translate-x-[110%] 1024Down:transition 1024Down:duration-[0.6s] 1024Down:delay-[1s]'} 
 
-                        `}>Appointment History</li>
+                        `}>Appointment History</li> */}
 
                         
                         {/**this three links are visible only on lg and below */}

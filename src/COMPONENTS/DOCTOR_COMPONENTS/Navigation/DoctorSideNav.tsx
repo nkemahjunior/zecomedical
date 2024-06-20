@@ -70,11 +70,14 @@ export default function DoctorSideNav() {
                     <hr  className="  border-stone-300 mt-8 mb-12"/>
 
 
-                    <ul className={`mt-4 space-y-4 `}>
 
-                        {/* this ConsultationLi component checks if there are available lab request, when the application first loads */}
+                    {/* madam does not want this feature */}
+                    {/* <ul className={`mt-4 space-y-4 `}>
+
+
+                         this ConsultationLi component checks if there are available lab request, when the application first loads 
                         <ConsultationLi/>
-                        <ul className=" space-y-6 ">
+                        {/* <ul className=" space-y-6 ">
 
                             {/* <ul className={` ${pathname == "" ? "bg-stone-200":""}    hover:bg-stone-300 transition-colors  py-1`}>
                                 <li className="ml-8 flex items-baseline gap-x-4"><span><IoTodayOutline /></span>Appointments for Today</li>
@@ -82,16 +85,17 @@ export default function DoctorSideNav() {
 
                             <ul className={` ${pathname == "" ? "bg-stone-200":""}    hover:bg-stone-300 transition-colors  py-1`}>
                                 <li className="ml-8 flex items-baseline gap-x-4"><span><PiArrowLineUp /></span>Ongoing consultation</li>
-                            </ul> */}
+                            </ul> 
 
                             <ResumeConsultationsLi/>
 
-                            {/* this components checks if there are available completed lab results */}
+                            {/* this components checks if there are available completed lab results 
                             <LabNotification/>
 
-                        </ul>
+                        </ul> 
 
-                    </ul>
+                    </ul> */}
+
                     <hr  className=" xl:hidden  border-stone-300 mt-8 mb-12"/>
 
 

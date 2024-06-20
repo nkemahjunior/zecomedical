@@ -342,7 +342,9 @@ export default function UpcomingAppointmentsDoc() {
                                 <th className=" pl-[2rem] py-[1rem] 2xl:py-[2rem] lg:py-[1.2rem]">Reason</th>
                                 <th className=" pl-[2rem] py-[1rem] 2xl:py-[2rem] lg:py-[1.2rem]">Complain&nbsp;notes</th>
                                 <th className=" pl-[2rem] py-[1rem] 2xl:py-[2rem] lg:py-[1.2rem]">Status</th>
-                                <th className=" pl-[2rem] py-[1rem] 2xl:py-[2rem] lg:py-[1.2rem]">Action</th>
+
+                                {/* madam does not want this feature */}
+                                {/* <th className=" pl-[2rem] py-[1rem] 2xl:py-[2rem] lg:py-[1.2rem]">Action</th> */}
                                 
                             </tr>
                         </thead>

@@ -14,7 +14,7 @@ import { checkLabResultsType } from "@/TYPES/Doctor/doctorTypes";
  
 export default function SendToLab({patientID, patientName}:{consultationID:string, patientID:string, patientName:string}) {
 
-    const {setPendingLabResults,pendingLabResults,pendingLabResultsCheck, setPendingLabResultsCheck} = useContext(DoctorContext) as mainDoctorContextType
+    const {setPendingLabResults,pendingLabResults} = useContext(DoctorContext) as mainDoctorContextType
 
     const [closeLab,setCloseLab] = useState(true)
     const labReqRef = useRef<HTMLDivElement>(null)

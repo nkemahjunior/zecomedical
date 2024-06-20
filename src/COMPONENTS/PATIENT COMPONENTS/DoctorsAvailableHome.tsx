@@ -1,11 +1,13 @@
 
-import { getAvailableDoctorsHome } from "@/DATA_FETCHING/PATIENT/functions/getAvailableDoctors";
 import { textStylesBody, textStylesH3 } from "../GENERAL_STYLES/general";
 import AvailableDoctor from "./AvailableDoctor";
 import { useGetAvailableDoctorsHome } from "@/DATA_FETCHING/PATIENT/hooks/useGetAvailableDoctorsHome";
 import LoadingAvailableDoctorsHome from "./loading/LoadingAvailableDoctorsHome";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { ChangeEvent, useContext, useRef, useState } from "react";
+import toast from "react-hot-toast";
+import { BiSearch } from "react-icons/bi";
+import { SearchContext, searchContextTypes } from "@/app/(PATIENT)/SearchBarProvider";
 
 
 const colorStyles = {
@@ -17,10 +19,14 @@ const colorStyles = {
  
 export default  function DoctorsAvailableHome() {
 
+
+    const {searchValue} = useContext(SearchContext) as searchContextTypes
+
     
     
-    const query = useGetAvailableDoctorsHome()
+    const query = useGetAvailableDoctorsHome(searchValue)
     if(query.isLoading) return <LoadingAvailableDoctorsHome/>
+    //console.log(query.data)
      
 
  
@@ -29,8 +35,7 @@ export default  function DoctorsAvailableHome() {
     return (
         <div className=" border-0 border-solid border-pink-600 "> 
 
-                            
-
+              
             <h3 className={`border-0 border-solid border-black mt-6 lg:mt-12 ${textStylesH3} text-[#00171F]`}>Available Doctors</h3>
 
             <div className="h-full lg:h-[89.2%] bg-[#003459] 
@@ -42,7 +47,17 @@ export default  function DoctorsAvailableHome() {
                 divide-y-2 divide-white divide">
 
                     {
-                        query.data?.content.map((el,i) => (
+                        query.data && "content" in query.data ? 
+
+                        query.data?.content?.map((el,i) => (
+                            <div key={i}>
+                                <AvailableDoctor data={el}   colorStyles={colorStyles}/>
+                            </div>
+                        ))
+
+                        :
+
+                        query.data?.map((el,i) => (
                             <div key={i}>
                                 <AvailableDoctor data={el}   colorStyles={colorStyles}/>
                             </div>

@@ -83,7 +83,9 @@ export default function UpcomingAppointmentTableRow({data}:propsType) {
 
             <td   className=" px-[2rem]  py-[1rem] 2xl:py-[2rem] lg:py-[1.2rem]">{data.status}</td>
 
-            <td className=" px-[2rem]  py-[1rem] 2xl:py-[2rem] lg:py-[1.2rem] ">
+
+            {/* madam does not want this feature */}
+            {/* <td className=" px-[2rem]  py-[1rem] 2xl:py-[2rem] lg:py-[1.2rem] ">
 
                 <button  className={` transition-all delay-75 duration-75
                 xl:hover:scale-95   py-2 px-4 rounded-lg shadow-2xl bg-green-400 xl:bg-green-500 flex items-baseline justify-center`}
@@ -94,7 +96,7 @@ export default function UpcomingAppointmentTableRow({data}:propsType) {
 
 
             
-            </td>
+            </td> */}
 
 
 

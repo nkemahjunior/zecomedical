@@ -94,7 +94,7 @@ export default function LabBloodBankParent() {
             
 
             <div className="w-full flex justify-center">
-                <h1 className={`${textStylesH3} text-black font-medium `}>Blood Bank Labooratory</h1>
+                <h1 className={`${textStylesH3} text-black font-medium `}>Laboratory</h1>
             </div>
 
 
