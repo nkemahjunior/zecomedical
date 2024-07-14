@@ -1,10 +1,11 @@
  'use client'
 
-import { resumeConsultationType } from "@/TYPES/Doctor/doctorTypes";
+import { pauseConsultationResponseType, resumeConsultationType } from "@/TYPES/Doctor/doctorTypes";
 import Link from "next/link";
 
  
-export default function PausedConsultationDetail({data}:{data:resumeConsultationType}) {
+//{data}:{data:resumeConsultationType}
+export default function PausedConsultationDetail({data}:{data:pauseConsultationResponseType}) {
 
    
 
