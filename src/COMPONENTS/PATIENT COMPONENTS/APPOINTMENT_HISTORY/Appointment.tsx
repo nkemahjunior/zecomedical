@@ -14,7 +14,7 @@ export default function Appointment() {
 
     function openModalContent(){
         setShowModal(true)
-        setModalContent(<PreviousSessionModalDetails/>)
+        //setModalContent(<PreviousSessionModalDetails/>)
 
     }
 
