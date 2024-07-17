@@ -9,6 +9,8 @@ export async function getUser():Promise<sessionType | undefined>{
     const cookieStore = cookies();
     const session = cookieStore.get("SESSION");
 
+    /*not working in production, server function can not read the cookie where the session id is, except i host the frontend and backend on thesame domain and that is not an option for now*/
+
     try {
         const res = await fetch(`${BASE_URL}/auth/session`,{
 
@@ -24,14 +26,8 @@ export async function getUser():Promise<sessionType | undefined>{
     
         })
 
-        
-        
         const data:sessionType = await res.json();
-        //console.log(data);
-        
 
-        //console.log(data);
-    
         return data
     
     } catch (error) {

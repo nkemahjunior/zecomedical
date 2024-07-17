@@ -63,16 +63,8 @@ export default function PatientNavBar() {
         setShow(true);
     }
 
-    function hideNav(){
-        setShow(false);
-    }
-
     function showNav2() {
         setShow2(true);
-    }
-
-    function hideNav2(){
-        setShow2(false);
     }
 
 

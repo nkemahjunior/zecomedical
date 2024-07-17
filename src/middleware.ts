@@ -4,19 +4,14 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function middleware(request:NextRequest){
 
-    // const requestUrl = new URL(request.url)
+    const requestUrl = new URL(request.url)
 
-    // const session = await getUser();
-
-    // console.log(session);
-
-   
-
-   
+    /* not working in production, the getUser() function can not read the cookie where the session id is, except i host the frontend and backend on thesame domain and that is not an option for now
+    const session = await getUser();   
  
-    // if(!session || session?.isAuthenticated == false) {
-    //     return NextResponse.redirect(new URL('/auth/signin', request.url))
-    // }
+     if(!session || session?.isAuthenticated == false) {
+         return NextResponse.redirect(new URL('/auth/signin', request.url))
+     }*/
 
 }
 
