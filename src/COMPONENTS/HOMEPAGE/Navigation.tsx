@@ -204,7 +204,7 @@ export default function Navigation() {
                         <button className="p-2 bg-white text-[#3D96A7] w-[20rem] lg:w-[24rem] h-[4rem] xl:h-[5rem] md:text-lg lg:text-xl 2xl:text-2xl
                             rounded-lg shadow-xl  hover:bg-[#134349] hover:text-white hover:scale-95 transition delay-75 duration-75
                         ">
-                            <Link href={"/patient/home"}>Book Appointment</Link>
+                            <Link href={"/auth/signin"}>Book Appointment</Link>
                         </button>
                         </div>
                     </div>
