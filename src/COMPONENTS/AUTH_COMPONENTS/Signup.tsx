@@ -67,7 +67,7 @@ export default function Signup() {
                 <div className="relative h-[30dvh] lg:h-full w-full  "> 
                     <Image alt="image of doctors" src={"/formimage.jpg"} fill style={{objectFit:"cover"}}/>
 
-                    <div className="absolute z-20 border-0 border-solid border-red-500 h-96">
+                    <div className="absolute z-20 border-0 border-solid border-red-500 h-96 mt-2 md:mt-4 2xl:mt-6">
                         <Logo/>
                     </div>
 
