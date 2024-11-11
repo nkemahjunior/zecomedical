@@ -106,8 +106,8 @@ export default function Navigation() {
            <Logo />
 
            <ul
-             className={`  absolute  right-0 top-6  sm:relative sm:flex sm:top-0 text-white border-solid border-0 border-black
-                    font-medium text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl 
+             className={`  absolute  right-0 pr-2 sm:pr-0 top-16  sm:relative sm:flex sm:top-0 text-white border-solid border-0 border-black
+                    font-medium text-3xl space-y-4 sm:space-y-0  sm:text-lg md:text-xl lg:text-2xl xl:text-3xl 2xl:text-4xl 
                     ${
                       show
                         ? "phones:translate-x-[-0%] phones:transition phones:duration-[0.7s]"
@@ -115,9 +115,9 @@ export default function Navigation() {
                     } `}
              ref={refToggle}
            >
-             <div className=" flex justify-end sm:hidden">
+             {/* <div className=" flex justify-end  sm:hidden">
                <button onClick={hideNav}>X</button>
-             </div>
+             </div> */}
 
              {/* <li className={` 
                          hover:text-[#96B3BC] transition-colors delay-75
@@ -177,7 +177,7 @@ export default function Navigation() {
 
            {/**Hamburger menu,phones only */}
            <div
-             className=" sm:hidden border-2 border-yellow-500 border-solid "
+             className=" sm:hidden border-0 border-yellow-500 border-solid "
              onClick={showNav}
            >
              <HamburgerButton />
