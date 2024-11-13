@@ -26,7 +26,7 @@ export default function RedirectLab() {
     }
 
     checkLab();
-  }, []);
+  }, [router]);
 
   return <div>redirecting......</div>;
 }

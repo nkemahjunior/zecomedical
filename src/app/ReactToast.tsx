@@ -4,7 +4,7 @@ import { Toaster } from "react-hot-toast"
 
 function ReactToast() {
     return (
-        <Toaster
+      <Toaster
         position="top-center"
         gutter={12}
         containerStyle={{ margin: "8px" }}
@@ -19,12 +19,14 @@ function ReactToast() {
             fontSize: "16px",
             maxWidth: "500px",
             padding: "16px 24px",
-            backgroundColor: "#00151F",
-            color: "#ADE3FE",
+            // backgroundColor: "#00151F",
+            // color: "#ADE3FE",
+            backgroundColor: "#ffffff",
+            color: "#000000",
           },
         }}
       />
-    )
+    );
 }
 
 export default ReactToast

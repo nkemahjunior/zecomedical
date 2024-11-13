@@ -117,7 +117,7 @@ export default function PatientNavBar() {
                 <PatientMedicalHistoryLi />
               </li>
 
-              <li
+              {/* <li
                 className={` xl:hover:text-[#ccd1d2]
                          transition-colors delay-75
                         ${
@@ -129,7 +129,7 @@ export default function PatientNavBar() {
                         `}
               >
                 Appointment History
-              </li>
+              </li> */}
 
               {/**this three links are visible only on lg and below */}
 

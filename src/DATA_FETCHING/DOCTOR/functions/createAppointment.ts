@@ -25,7 +25,11 @@ export async function createAppointmentFN(data:createAppointmentType){
 
 
         const csrf = getCookie("XSRF-TOKEN")
-        if(csrf == "" ||  !csrf) throw new Error("bad user")
+
+            // backend and frontend need to be on thesame domain/ sub domain
+        //if (csrf == "" || !csrf) throw new Error("bad user")
+        
+
 
         const res = await fetch(`${BASE_URL}/doctor/appointment`,{
             credentials:"include",

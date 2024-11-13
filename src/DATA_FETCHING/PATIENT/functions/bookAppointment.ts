@@ -22,7 +22,7 @@ export async function bookAppointment(data:BookAppointmentType) {
             method:"POST"
         })
 
-        const resData:requestResponse = await res.json()
+        const resData: requestResponse = await res.json()
 
         if(resData.status == 201) toast.success(resData.message) 
         else toast.error(resData.message)

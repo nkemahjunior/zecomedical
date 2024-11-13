@@ -24,8 +24,7 @@ export default function AvailableDoctorModalDetails({appointmentData}:{appointme
 
     const mutation = useBookAppointment()
 
-    async function onSubmitForm(data:BookAppointmentType){
-
+    async function onSubmitForm(data: BookAppointmentType) {
        const res = await mutation.mutateAsync(data)
 
        //success
