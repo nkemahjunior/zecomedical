@@ -26,7 +26,7 @@ export default function MedicalHistoryPatient() {
     if(query.isLoading) return <LoadingSpinnerPatient/>
 
    
-    //console.log(query.data);
+    console.log(query.data);
 
     return (
       <div
@@ -41,7 +41,7 @@ export default function MedicalHistoryPatient() {
           </h1>
         </div>
 
-        {query.data && query.data.length > 1 && (
+        {query.data && query.data.length >= 1 && (
           <div className=" space-y-8 divide-y-2 divide-stone-300 divide-solid">
             {query.data.map((el, i) => (
               <MedicalHistoryChildPatient data={el} key={i} />

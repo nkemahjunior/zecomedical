@@ -46,23 +46,22 @@ export interface createAppointmentType {
 
 
 
- export interface appointmentReqType{
-   
-        id: number,
-        status: string,
-        reason: string,
-        complain_notes:string,
-        rende_vouz: null,
-       // doctorID: null,
-        patient_id: {
-            patientID: {
-                name: string
-            },
-            id: number
-        },
-        //appointment_id: null,
-        dateTime: string
-    
+ export interface appointmentReqType {
+   id: number;
+   status: string;
+   reason: string;
+   complain_notes: string;
+   rende_vouz: null;
+   // doctorID: null,
+   patient_id: {
+     patientID: {
+       name: string;
+        profilePhotoUrl: string;
+     };
+     id: number;
+   };
+   //appointment_id: null,
+   dateTime: string;
  }
 
 

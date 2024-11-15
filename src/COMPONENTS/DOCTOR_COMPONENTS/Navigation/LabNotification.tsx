@@ -36,18 +36,32 @@ export default function LabNotification() {
 
 
     return (
-        <Link href={"/doctor/consultation/notifications"} className="block">
-            <ul className={` hover:bg-stone-300 transition-colors  py-1 ${pathname == "/doctor/consultation/notifications" ? "bg-stone-200":""}`}>
-                <li className="ml-8 flex items-baseline gap-x-4">
-                    <span className="relative h-fit inline-block">
+      <Link href={"/doctor/consultation/notifications"} className="block">
+        <ul
+          className={` hover:bg-stone-300 transition-colors  py-1 ${
+            pathname == "/doctor/consultation/notifications"
+              ? "bg-stone-200 text-[#24312F] font-bold "
+              : ""
+          }`}
+        >
+          <li className="ml-8 flex items-baseline gap-x-4">
+            {pathname == "/doctor/consultation/notifications" && (
+              <span className="relative h-fit inline-block">
+                {completedResults.length > 0 && <AnimationPing />}
 
-                        {completedResults.length > 0  && <AnimationPing/>}
+                <IoMdNotificationsOutline strokeWidth={10} />
+              </span>
+            )}
+            {pathname != "/doctor/consultation/notifications" && (
+              <span className="relative h-fit inline-block">
+                {completedResults.length > 0 && <AnimationPing />}
 
-                        <IoMdNotificationsOutline />
-                    </span>
-                    Lab Notifications
-                </li>
-            </ul>
-        </Link>
+                <IoMdNotificationsOutline />
+              </span>
+            )}
+            Lab Notifications
+          </li>
+        </ul>
+      </Link>
     );
 }

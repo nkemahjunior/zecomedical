@@ -36,6 +36,6 @@ export default function ConsultationLi() {
 
 
     return (
-        <li className={` font-semibold  `}>Consultations&nbsp;{query.isLoading && <ButtonSpinner/>}</li>
+        <li className={`   `}>Consultations&nbsp;{query.isLoading && <ButtonSpinner/>}</li>
     );
 }
